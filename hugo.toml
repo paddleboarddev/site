@@ -8,11 +8,42 @@ disableKinds = ["taxonomy", "term"]
   label = "English"
   weight = 1
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [params]
-  description = "PaddleBoard — a Zed-based code editor built for AI-native development."
-  tagline = "Paddle your own board."
+  description = "PaddleBoard is a Zed-based code editor built for AI-native development — bring-your-own-key models, an agent workbench, and an AI Dock, with telemetry off by default."
+  tagline = "The AI-native code editor you actually own."
+  subtitle = "PaddleBoard is a fork of Zed tuned for agentic development: bring your own model keys, run a built-in agent workbench, and manage agents, skills, and MCP servers from one place — with no telemetry and no hosted plan."
   repo = "https://github.com/paddleboarddev/paddleboard"
   docs = "https://github.com/paddleboarddev/docs"
 
-[markup.goldmark.renderer]
-  unsafe = true
+  [[params.features]]
+    icon = "🔑"
+    title = "Bring your own keys"
+    body = "OpenAI, Anthropic, Google, Vertex AI, Bedrock, and more. No hosted plan, no upsells — you own the relationship with your model provider."
+
+  [[params.features]]
+    icon = "🤖"
+    title = "Agent workbench"
+    body = "A first-class agent panel with delegation, plus support for ADK, LangGraph, CrewAI, and AutoGen agent frameworks out of the box."
+
+  [[params.features]]
+    icon = "🛟"
+    title = "AI Dock"
+    body = "Install and manage agents, skills, and MCP servers from one place — with live logs and an orchestration panel for parallel work."
+
+  [[params.features]]
+    icon = "🌊"
+    title = "Tiered languages"
+    body = "Common languages work the moment you open a file; opt into the rest from Manage Languages. No bloat you didn't ask for."
+
+  [[params.features]]
+    icon = "🔒"
+    title = "Private by default"
+    body = "Telemetry is hard-disabled at the source — events never queue, never log, never leave your machine. No account required."
+
+  [[params.features]]
+    icon = "⚓"
+    title = "Built on Zed"
+    body = "All of Zed's speed and multibuffer editing, inherited and kept in sync — with PaddleBoard's AI-native additions layered on top."

@@ -1,14 +1,48 @@
 {{ define "main" }}
 <section class="hero">
-  <h1>{{ .Site.Title }}</h1>
-  <p class="tagline">{{ .Site.Params.tagline }}</p>
-  <p class="lede">{{ .Site.Params.description }}</p>
-  <div class="cta">
-    <a class="btn btn-primary" href="{{ .Site.Params.repo }}">Get the source</a>
-    <a class="btn" href="{{ .Site.Params.docs }}">Read the docs</a>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <img class="hero-logo" src="{{ "paddleboard_logo.svg" | relURL }}" alt="PaddleBoard logo" width="96" height="96">
+    <p class="eyebrow">Alpha · build from source</p>
+    <h1>{{ .Site.Params.tagline }}</h1>
+    <p class="hero-sub">{{ .Site.Params.subtitle }}</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="{{ .Site.Params.repo }}">Get the source</a>
+      <a class="btn btn-ghost" href="{{ .Site.Params.docs }}">Read the docs</a>
+    </div>
   </div>
 </section>
-<section class="content">
-  {{ .Content }}
+
+<section id="features" class="features">
+  <div class="section-inner">
+    <h2 class="section-title">Everything you'd expect, nothing you didn't ask for</h2>
+    <p class="section-lead">PaddleBoard layers an AI-native workflow on top of Zed — on your terms.</p>
+    <div class="feature-grid">
+      {{ range .Site.Params.features }}
+      <article class="feature-card">
+        <div class="feature-icon">{{ .icon }}</div>
+        <h3>{{ .title }}</h3>
+        <p>{{ .body }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ with .Content }}
+<section class="prose-section">
+  <div class="section-inner prose">{{ . }}</div>
+</section>
+{{ end }}
+
+<section class="cta-band">
+  <div class="section-inner cta-band-inner">
+    <h2>Ready to paddle your own board?</h2>
+    <p>It's alpha and built from source today — released binaries are on the way.</p>
+    <div class="cta">
+      <a class="btn btn-dark" href="{{ .Site.Params.repo }}">Build from source</a>
+      <a class="btn btn-outline-dark" href="{{ .Site.Params.docs }}">Documentation</a>
+    </div>
+  </div>
 </section>
 {{ end }}
