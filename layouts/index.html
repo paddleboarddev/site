@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="hero">
+  <h1>{{ .Site.Title }}</h1>
+  <p class="tagline">{{ .Site.Params.tagline }}</p>
+  <p class="lede">{{ .Site.Params.description }}</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="{{ .Site.Params.repo }}">Get the source</a>
+    <a class="btn" href="{{ .Site.Params.docs }}">Read the docs</a>
+  </div>
+</section>
+<section class="content">
+  {{ .Content }}
+</section>
+{{ end }}

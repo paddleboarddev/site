@@ -1,0 +1,18 @@
+baseURL = "https://paddleboard.dev/"
+title = "PaddleBoard"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+[languages.en]
+  locale = "en-US"
+  label = "English"
+  weight = 1
+
+[params]
+  description = "PaddleBoard — a Zed-based code editor built for AI-native development."
+  tagline = "Paddle your own board."
+  repo = "https://github.com/paddleboarddev/paddleboard"
+  docs = "https://github.com/paddleboarddev/docs"
+
+[markup.goldmark.renderer]
+  unsafe = true
