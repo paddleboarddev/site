@@ -3,24 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+  <title>{{ if .IsHome }}{{ .Site.Title }} — {{ .Site.Params.tagline }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
+  <meta property="og:title" content="{{ .Site.Title }}">
+  <meta property="og:description" content="{{ .Site.Params.description }}">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="{{ "paddleboard_logo.svg" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="{{ "/" | relURL }}">🛶 PaddleBoard</a>
-    <nav>
-      <a href="{{ .Site.Params.docs }}">Docs</a>
-      <a href="{{ .Site.Params.repo }}">GitHub</a>
-    </nav>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="{{ "/" | relURL }}">
+        <img class="brand-logo" src="{{ "paddleboard_logo.svg" | relURL }}" alt="" width="34" height="34">
+        <span>PaddleBoard</span>
+      </a>
+      <nav class="nav-links">
+        <a href="{{ "/#features" | relURL }}">Features</a>
+        <a href="{{ .Site.Params.docs }}">Docs</a>
+        <a href="{{ .Site.Params.repo }}">GitHub</a>
+        <a class="btn btn-primary btn-sm" href="{{ .Site.Params.repo }}">Get the source</a>
+      </nav>
+    </div>
   </header>
+
   <main>
     {{ block "main" . }}{{ end }}
   </main>
-  <footer class="site-footer">
-    <p>PaddleBoard is a fork of <a href="https://zed.dev">Zed</a>, distributed under Zed's original licenses.</p>
-    <p>© {{ now.Year }} paddleboarddev</p>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a class="brand" href="{{ "/" | relURL }}">
+          <img class="brand-logo" src="{{ "paddleboard_logo.svg" | relURL }}" alt="" width="30" height="30">
+          <span>PaddleBoard</span>
+        </a>
+        <p>The AI-native code editor you actually own.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Project</h4>
+          <a href="{{ .Site.Params.repo }}">GitHub</a>
+          <a href="{{ .Site.Params.docs }}">Docs</a>
+          <a href="{{ .Site.Params.repo }}/releases">Releases</a>
+        </div>
+        <div class="footer-col">
+          <h4>Built on</h4>
+          <a href="https://zed.dev">Zed</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>PaddleBoard is a fork of <a href="https://zed.dev">Zed</a>, distributed under Zed's original licenses.</p>
+      <p>© {{ now.Year }} paddleboarddev</p>
+    </div>
   </footer>
 </body>
 </html>
