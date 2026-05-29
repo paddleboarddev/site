@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
+  <link rel="icon" type="image/svg+xml" href="{{ "paddleboard_logo.svg" | relURL }}">
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="{{ "/" | relURL }}">🛶 PaddleBoard</a>
+    <a class="brand" href="{{ "/" | relURL }}">
+      <img class="brand-logo" src="{{ "paddleboard_logo.svg" | relURL }}" alt="PaddleBoard logo" width="32" height="32">
+      <span>PaddleBoard</span>
+    </a>
     <nav>
       <a href="{{ .Site.Params.docs }}">Docs</a>
       <a href="{{ .Site.Params.repo }}">GitHub</a>

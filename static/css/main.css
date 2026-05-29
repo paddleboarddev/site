@@ -28,7 +28,8 @@ a { color: var(--deep); }
   padding: 1.25rem 1.5rem;
 }
 
-.brand { font-weight: 700; font-size: 1.25rem; text-decoration: none; color: var(--ink); }
+.brand { display: inline-flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 1.25rem; text-decoration: none; color: var(--ink); }
+.brand-logo { display: block; width: 32px; height: 32px; border-radius: 8px; }
 .site-header nav a { margin-left: 1.25rem; text-decoration: none; font-weight: 600; }
 
 main { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
