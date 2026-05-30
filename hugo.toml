@@ -16,7 +16,7 @@ disableKinds = ["taxonomy", "term"]
   tagline = "The AI-native code editor you actually own."
   subtitle = "PaddleBoard is a fork of Zed tuned for agentic development: bring your own model keys, run a built-in agent workbench, and manage agents, skills, and MCP servers from one place — with no telemetry and no hosted plan."
   repo = "https://github.com/paddleboarddev/paddleboard"
-  docs = "https://github.com/paddleboarddev/docs"
+  docs = "https://docs.paddleboard.dev"
 
   [[params.features]]
     icon = "🔑"
