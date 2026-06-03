@@ -21,7 +21,7 @@ disableKinds = ["taxonomy", "term"]
   [[params.features]]
     icon = "🔑"
     title = "Bring your own keys"
-    body = "OpenAI, Anthropic, Google, Vertex AI, Bedrock, and more. No hosted plan, no upsells — you own the relationship with your model provider."
+    body = "OpenAI, Anthropic, Google, Gemini Enterprise, Bedrock, and more. No hosted plan, no upsells — you own the relationship with your model provider."
 
   [[params.features]]
     icon = "🤖"
@@ -36,12 +36,12 @@ disableKinds = ["taxonomy", "term"]
   [[params.features]]
     icon = "🌊"
     title = "Tiered languages"
-    body = "Common languages work the moment you open a file; opt into the rest from Manage Languages. No bloat you didn't ask for."
+    body = "Common languages — now including Dockerfiles and Podman Containerfiles — work the moment you open a file; opt into the rest from Manage Languages. No bloat you didn't ask for."
 
   [[params.features]]
     icon = "🔒"
     title = "Private by default"
-    body = "Telemetry is hard-disabled at the source — events never queue, never log, never leave your machine. No account required."
+    body = "Telemetry is hard-disabled at the source — events never queue, never log, never leave your machine. Even spelling and grammar checking runs fully offline. No account required."
 
   [[params.features]]
     icon = "⚓"
