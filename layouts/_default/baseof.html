@@ -46,6 +46,7 @@
           <a href="{{ .Site.Params.repo }}">GitHub</a>
           <a href="{{ .Site.Params.docs }}">Docs</a>
           <a href="{{ .Site.Params.repo }}/releases">Releases</a>
+          <a href="{{ .Site.Params.repo }}/blob/main/CREDITS.md">Credits</a>
         </div>
         <div class="footer-col">
           <h4>Built on</h4>
@@ -55,7 +56,7 @@
     </div>
     <div class="footer-legal">
       <p>PaddleBoard is a fork of <a href="https://zed.dev">Zed</a>, distributed under Zed's original licenses.</p>
-      <p>© {{ now.Year }} paddleboarddev</p>
+      <p>{{ with .Site.Params.version }}<a href="{{ $.Site.Params.repo }}/releases/tag/{{ . }}">{{ . }}</a> · {{ end }}© {{ now.Year }} paddleboarddev</p>
     </div>
   </footer>
 </body>
