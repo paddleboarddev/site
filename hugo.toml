@@ -18,7 +18,7 @@ disableKinds = ["taxonomy", "term"]
   repo = "https://github.com/paddleboarddev/paddleboard"
   docs = "https://docs.paddleboard.dev"
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
-  version = "v0.1.2.1"
+  version = "v0.1.3"
 
   [[params.features]]
     icon = "🔑"
