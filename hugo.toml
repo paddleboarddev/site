@@ -17,8 +17,9 @@ disableKinds = ["taxonomy", "term"]
   subtitle = "PaddleBoard is a fork of Zed tuned for agentic development: bring your own model keys, run a built-in agent workbench, and manage agents, skills, and MCP servers from one place — with no telemetry and no hosted plan."
   repo = "https://github.com/paddleboarddev/paddleboard"
   docs = "https://docs.paddleboard.dev"
+  bluesky = "https://bsky.app/profile/paddleboard.dev"
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
-  version = "v0.1.4"
+  version = "v0.1.5"
 
   [[params.features]]
     icon = "🔑"
