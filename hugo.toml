@@ -1,6 +1,9 @@
 baseURL = "https://paddleboard.dev/"
 title = "PaddleBoard"
 enableRobotsTXT = true
+# Source <lastmod> in the sitemap from git commit dates (the deploy checks out
+# full history, fetch-depth: 0).
+enableGitInfo = true
 disableKinds = ["taxonomy", "term"]
 
 [languages.en]
