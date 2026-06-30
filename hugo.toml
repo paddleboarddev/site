@@ -12,9 +12,12 @@ disableKinds = ["taxonomy", "term"]
   unsafe = true
 
 [params]
-  description = "PaddleBoard is a Zed-based code editor built for AI-native development — bring-your-own-key models, an agent workbench, and an AI Dock, with telemetry off by default."
-  tagline = "The AI-native code editor you actually own."
-  subtitle = "PaddleBoard is a fork of Zed tuned for agentic development: bring your own model keys, run a built-in agent workbench, and manage agents, skills, and MCP servers from one place — with no telemetry and no hosted plan."
+  # SEO: front-load the terms people search ("open source AI IDE", "AI harness").
+  seotitle = "Open-Source AI IDE & Coding-Agent Harness"
+  description = "PaddleBoard is an open-source AI IDE and harness for coding agents — bring your own model keys, run a built-in agent workbench, and manage agents, skills, and MCP servers. Telemetry off by default."
+  keywords = "open source AI IDE, open source AI harness, AI IDE, AI code editor, agentic IDE, coding agent harness, AI agent workbench, agentic coding, MCP client, bring your own key LLM, Zed fork, local-first AI editor"
+  tagline = "The open-source AI IDE you actually own."
+  subtitle = "PaddleBoard is an open-source, AI-native IDE — a local-first harness for coding agents. Bring your own model keys, run a built-in agent workbench, and manage agents, skills, and MCP servers from one place. No telemetry, no hosted plan."
   repo = "https://github.com/paddleboarddev/paddleboard"
   docs = "https://docs.paddleboard.dev"
   bluesky = "https://bsky.app/profile/paddleboard.dev"
