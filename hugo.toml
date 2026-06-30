@@ -19,7 +19,7 @@ disableKinds = ["taxonomy", "term"]
   docs = "https://docs.paddleboard.dev"
   bluesky = "https://bsky.app/profile/paddleboard.dev"
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
-  version = "v0.1.8.1"
+  version = "v0.1.9"
 
   [[params.features]]
     icon = "🔑"
