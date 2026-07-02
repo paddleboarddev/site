@@ -17,15 +17,20 @@ disableKinds = ["taxonomy", "term"]
 [params]
   # SEO: front-load the terms people search ("open source AI IDE", "AI harness").
   seotitle = "Open-Source AI IDE & Coding-Agent Harness"
-  description = "PaddleBoard is an open-source AI IDE and harness for coding agents — bring your own model keys, run a built-in agent workbench, and manage agents, skills, and MCP servers. Telemetry off by default."
-  keywords = "open source AI IDE, open source AI harness, AI IDE, AI code editor, agentic IDE, coding agent harness, AI agent workbench, agentic coding, MCP client, bring your own key LLM, Zed fork, local-first AI editor"
+  description = "PaddleBoard is an open-source AI IDE and harness for coding agents — define who your agent should be with PERSONA.md, bring your own model keys, and manage agents, skills, and MCP servers. Telemetry off by default."
+  keywords = "open source AI IDE, open source AI harness, AI IDE, AI code editor, agentic IDE, coding agent harness, AI agent workbench, agentic coding, AI agent persona, PERSONA.md, MCP client, bring your own key LLM, Zed fork, local-first AI editor"
   tagline = "The open-source AI IDE you actually own."
-  subtitle = "PaddleBoard is an open-source, AI-native IDE — a local-first harness for coding agents. Bring your own model keys, run a built-in agent workbench, and manage agents, skills, and MCP servers from one place. No telemetry, no hosted plan."
+  subtitle = "PaddleBoard is an open-source, AI-native IDE — a local-first harness for coding agents. Tell your agent who to be with a PERSONA.md, bring your own model keys, and manage agents, skills, and MCP servers from one place. No telemetry, no hosted plan."
   repo = "https://github.com/paddleboarddev/paddleboard"
   docs = "https://docs.paddleboard.dev"
   bluesky = "https://bsky.app/profile/paddleboard.dev"
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
   version = "v0.1.10"
+
+  [[params.features]]
+    icon = "🎭"
+    title = "Personas"
+    body = "Skills say what your agent can do — a PERSONA.md says who it should be. Describe a Senior Dev, an SRE, or a QA engineer and every thread holds that identity, with any model. Or just ask: \"be my QA tester.\""
 
   [[params.features]]
     icon = "🔑"
