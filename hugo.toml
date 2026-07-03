@@ -33,11 +33,6 @@ disableKinds = ["taxonomy", "term"]
     body = "Every line is public — the editor, the docs, even the deploy playbooks. Fork it, audit it, own it. No hosted plan, no black boxes."
 
   [[params.features]]
-    icon = "🎭"
-    title = "Personas"
-    body = 'Skills say what your agent can do — a PERSONA.md says who it should be. Describe a Senior Dev, an SRE, or a QA engineer and every thread holds that identity, with any model. Or just ask: "be my QA tester."'
-
-  [[params.features]]
     icon = "🔑"
     title = "Bring your own keys"
     body = "OpenAI, Anthropic, Google Gemini, AWS Bedrock, and more. No hosted plan, no upsells — you own the relationship with your model provider."
@@ -51,6 +46,11 @@ disableKinds = ["taxonomy", "term"]
     icon = "🛟"
     title = "AI Dock"
     body = "Install and manage agents, skills, personas, and MCP servers from one place — with live logs and an orchestration panel for parallel work."
+
+  [[params.features]]
+    icon = "🎭"
+    title = "Personas"
+    body = 'Skills say what your agent can do — a PERSONA.md says who it should be. Describe a Senior Dev, an SRE, or a QA engineer and every thread holds that identity, with any model. Or just ask: "be my QA tester."'
 
   [[params.features]]
     icon = "🤖"
