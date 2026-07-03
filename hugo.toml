@@ -48,9 +48,9 @@ disableKinds = ["taxonomy", "term"]
     body = "Install and manage agents, skills, and MCP servers from one place — with live logs and an orchestration panel for parallel work."
 
   [[params.features]]
-    icon = "🌊"
-    title = "Tiered languages"
-    body = "Common languages — now including Dockerfiles and Podman Containerfiles — work the moment you open a file; opt into the rest from Manage Languages. No bloat you didn't ask for."
+    icon = "⛵"
+    title = "Set Sail"
+    body = "Deploy to Cloud Run in one command — the agent installs the open-source s8sskills playbook, checks your gcloud setup, and ships your project from source. More platforms on the horizon."
 
   [[params.features]]
     icon = "🔒"
