@@ -3,11 +3,11 @@
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-inner">
     <img class="hero-logo" src="{{ "paddleboard_logo.svg" | relURL }}" alt="PaddleBoard logo" width="96" height="96">
-    <p class="eyebrow">Open-source · AI-native · alpha (build from source)</p>
+    <p class="eyebrow">Open-source · AI-native · alpha</p>
     <h1>{{ .Site.Params.tagline }}</h1>
     <p class="hero-sub">{{ .Site.Params.subtitle }}</p>
     <div class="cta">
-      <a class="btn btn-primary" href="{{ .Site.Params.repo }}">Get the source</a>
+      <a class="btn btn-primary" href="{{ .Site.Params.repo }}/releases/latest">Download for macOS</a>
       <a class="btn btn-ghost" href="{{ .Site.Params.docs }}">Read the docs</a>
     </div>
   </div>
@@ -38,9 +38,9 @@
 <section class="cta-band">
   <div class="section-inner cta-band-inner">
     <h2>Ready to paddle your own board?</h2>
-    <p>It's alpha and built from source today — released binaries are on the way. Builds aren't notarized by Apple yet, so distributed macOS apps will need a Gatekeeper bypass for now.</p>
+    <p>It's alpha, but real: signed, notarized macOS builds (Apple Silicon) are ready to download — they open without a Gatekeeper warning. Prefer to build it yourself? The full source is a clone away.</p>
     <div class="cta">
-      <a class="btn btn-dark" href="{{ .Site.Params.repo }}">Build from source</a>
+      <a class="btn btn-dark" href="{{ .Site.Params.repo }}/releases/latest">Download for macOS</a>
       <a class="btn btn-outline-dark" href="{{ .Site.Params.docs }}">Documentation</a>
     </div>
   </div>
