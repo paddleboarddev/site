@@ -68,6 +68,11 @@ disableKinds = ["taxonomy", "term"]
     body = 'Serverless-first deploys: ship straight to <a href="https://cloud.run">Cloud Run</a>, <a href="https://aws.amazon.com/pm/lambda">AWS Lambda</a>, or <a href="https://vercel.com">Vercel</a> in one click — the agent follows the open-source <a href="https://s8sskills.com">s8sskills</a> playbook and hands you the helm for auth.'
 
   [[params.features]]
+    icon = "🗂️"
+    title = "Manifest"
+    body = "The ship's manifest for your repo: repositories, branches, commits, stashes, and contributors in one dockable tree. Click a commit for its diff or a stash to apply it — instant, local, no waiting on git."
+
+  [[params.features]]
     icon = "⚓"
     title = "Built on Zed"
     body = "All of Zed's speed and multibuffer editing, inherited and kept in sync — with PaddleBoard's AI-native additions layered on top."
