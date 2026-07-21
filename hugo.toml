@@ -73,6 +73,11 @@ disableKinds = ["taxonomy", "term"]
     body = "The ship's manifest for your repo: repositories, branches, commits, stashes, and contributors in one dockable tree. Click a commit for its diff or a stash to apply it — instant, local, no waiting on git."
 
   [[params.features]]
+    icon = "🎨"
+    title = "Ready from first launch"
+    body = "Opens in PaddleBoard's own theme, then walks you to a working agent before you leave setup — run a model locally with no API key, or bring your own. A short guided tour shows you around."
+
+  [[params.features]]
     icon = "⚓"
     title = "Built on Zed"
     body = "All of Zed's speed and multibuffer editing, inherited and kept in sync — with PaddleBoard's AI-native additions layered on top."
