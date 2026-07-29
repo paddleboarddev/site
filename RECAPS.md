@@ -2,6 +2,18 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-07-29
+
+### Point every call to action at the signed release
+
+- **The page contradicted itself.** The hero read `alpha (build from source)` with a primary button of **Get the source**, and the **header nav's primary button said the same** — while the CTA band at the foot of the same page correctly described a code-signed, notarized macOS build. The top told visitors to compile it themselves; the bottom offered them a binary. PR #20 fixed the band and missed the other two. The "alpha" framing stopped being true at **v0.1.14**.
+- **All three primary actions** (nav, hero, band) now read **Download** and point at `releases/latest`. The eyebrow states the real status: `v0.2.0, signed & notarized`.
+- **Intentionally preserved:** the hero's secondary **Read the docs** button, and the **GitHub** nav link — people who want to build from source still reach the repo in one click, so nothing was lost by demoting "Get the source".
+- **JSON-LD `downloadUrl`** moved from the repo root to `releases/latest`, so structured data describes the artifact rather than the source tree.
+- **Verified against the live release rather than assumed** — this mattered because the version number now appears in the hero: `v0.2.0` is public, not a draft or prerelease (published 2026-07-21); `releases/latest` returns 200; assets are `PaddleBoard-aarch64.dmg` (161 MB) and `paddleboard-linux-x86_64.tar.gz` (163 MB), so both the signed-macOS and Linux-tarball claims hold. Clean `hugo --gc --minify`; rendered output has three `releases/latest` links and zero occurrences of "alpha (build from source)", "Get the source", "binaries are on the way", or "Gatekeeper bypass".
+- ⚠️ **Process note:** I first reported this as "the notarization copy never reached main" from a stale `origin/main` I had not fetched. That was wrong — #20 merged (`9802aee`). Reading the live page is what found the real, narrower defect. **Fetch before asserting what is deployed, or just read the deployed page.**
+- Shipped as [PR #22](https://github.com/paddleboarddev/site/pull/22); deploys to paddleboard.dev on merge. Independent of the redesign — it fixes copy that is wrong for every visitor today.
+
 ## 2026-07-20
 
 ### Correct release status and add a first-launch feature card
