@@ -27,6 +27,18 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 - ⚠️ **Process note:** I first reported this as "the notarization copy never reached main" from a stale `origin/main` I had not fetched. That was wrong — #20 merged (`9802aee`). Reading the live page is what found the real, narrower defect. **Fetch before asserting what is deployed, or just read the deployed page.**
 - Shipped as [PR #22](https://github.com/paddleboarddev/site/pull/22); deploys to paddleboard.dev on merge. Independent of the redesign — it fixes copy that is wrong for every visitor today.
 
+## 2026-07-28
+
+### Redesign direction settled, and a first prototype to react to
+
+- **Diagnosed *why* the site reads generic**, which Jay had summarised as "looks like a generic OSS site made by Claude." Reading the actual layout/CSS: centered hero + radial gradient glow, eyebrow pill, `border-radius:999px` buttons, a three-across icon `feature-card` grid, everything inside a centered ~1080px container, a `cta-band` before the footer, and a `-apple-system, BlinkMacSystemFont…` font stack. That is the full default shape of an LLM-generated dev-tool page — **so most of the fix is deletion, not addition.**
+- **Direction chosen (Jay): product-led + editor-native. Typography and product shots only** — no illustration, no commissioned mark, no designer. The logo is already the work of a human designer and stays as-is.
+- **Typography answer came free.** The editor renders in **Lilex** (mono) and **IBM Plex Sans** — the real identities behind `.ZedMono`/`.ZedSans` — both OFL, both already in the app repo's `assets/fonts/`. Using them makes "editor-native" literally true rather than a mood, at zero licensing cost.
+- **Prototype A built** (`prototype-a.html`, self-contained, fonts embedded): tab-strip nav, a line-number gutter running the page height, section labels coloured as **real syntax tokens** pulled from `paddleboard.json` (keyword/function/string/type/number), a fixed status-bar footer mirroring the app's own, left-aligned hero with the shot bleeding off the right edge, and alternating feature sections. Gone: glow, eyebrow pill, pill buttons, icon-card grid, CTA band, reflexive centering.
+- ⚠️ **Caught only by reading computed styles:** the syntax-token colours were silently dead on the first build — `.feat p` sets the muted prose colour at `0,1,1` specificity and beat `.tok-kw` at `0,1,0`, so every label rendered grey and the page's signature device simply wasn't there. It looked fine in a screenshot. The CSS now carries a comment explaining why that specificity is load-bearing.
+- **Blocking dependency:** the five product screenshots. The campaign plan schedules them at T-2 (week of Aug 4), but this direction depends on them *now* — capture has to move earlier. Open question with Jay: whether he shoots them or grants scope for me to (my app-driving permission is Glowup-scoped and marketing capture sits outside it).
+- **Not yet decided:** hero mono at 68px (striking vs too much), whether the gutter reads as intentional, whether the status bar earns its permanent 34px. Nothing merged — the prototype lives outside the repo pending Jay's reaction.
+
 ## 2026-07-20
 
 ### Correct release status and add a first-launch feature card
