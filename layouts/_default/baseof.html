@@ -30,7 +30,7 @@
     "operatingSystem" "macOS, Linux, Windows"
     "description" .Site.Params.description
     "url" .Site.BaseURL
-    "downloadUrl" .Site.Params.repo
+    "downloadUrl" (printf "%s/releases/latest" .Site.Params.repo)
     "softwareVersion" .Site.Params.version
     "license" "https://www.gnu.org/licenses/gpl-3.0.html"
     "isAccessibleForFree" true
@@ -50,7 +50,7 @@
         <a href="{{ "/#features" | relURL }}">Features</a>
         <a href="{{ .Site.Params.docs }}">Docs</a>
         <a href="{{ .Site.Params.repo }}">GitHub</a>
-        <a class="btn btn-primary btn-sm" href="{{ .Site.Params.repo }}">Get the source</a>
+        <a class="btn btn-primary btn-sm" href="{{ .Site.Params.repo }}/releases/latest">Download</a>
       </nav>
     </div>
   </header>
