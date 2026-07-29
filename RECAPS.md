@@ -27,6 +27,20 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 - ⚠️ **Process note:** I first reported this as "the notarization copy never reached main" from a stale `origin/main` I had not fetched. That was wrong — #20 merged (`9802aee`). Reading the live page is what found the real, narrower defect. **Fetch before asserting what is deployed, or just read the deployed page.**
 - Shipped as [PR #22](https://github.com/paddleboarddev/site/pull/22); deploys to paddleboard.dev on merge. Independent of the redesign — it fixes copy that is wrong for every visitor today.
 
+### Product screenshots, and the three defects taking them exposed
+
+- **Scope granted by Jay, narrowly:** capture PaddleBoard screenshots for these assets only, nothing else on the machine. Implemented as window-scoped capture — enumerate via `CGWindowListCopyWindowInfo` (a `swift` one-liner; no pyobjc here), filter to windows owned by PaddleBoard, then `screencapture -o -l<windowID>`. **No full-screen capture was ever taken**, so nothing else on his desktop could enter frame. Recorded in [[feedback-marketing-screenshot-access]].
+- **Apple Events are blocked on this Mac** (`-1743`), so windows cannot be positioned or clicked by script, and the CLI has no flag to open a panel. Editor shots were driven via `Contents/MacOS/cli <path>`; every panel shot needed Jay to open it. That split — he clicks, I frame and name — worked well and is the pattern to repeat.
+- **Shot against `samples/demo` only**, so no private repo, path, or account appears. One redaction was needed: the Usage tab renders `/Users/jaysmith/...`, painted out with the modal's own sampled background before cropping.
+- **Six sections now carry real assets:** hero (editor), persona (AI Dock → Personas), models (18 providers with Local Models in the same list), dock (AI Dock → Agents), sandbox (Sandbox Backend, cropped), setsail (six platforms). MCP-tab variant kept in `alt/`.
+- 🐛 **Photographing the product found three defects that reading code had not:**
+  1. **"Zed Agent" led the Agents tab, described as a "First-party agent"** — true for Zed, false for a fork, and the first thing a visitor would see in the flagship panel. Fixed in app [PR #111](https://github.com/jasonsmithio/paddleboard/pull/111): moved below Antigravity, reworded. **Antigravity turned out to already be in the catalog** — it was simply below the visible fold.
+  2. **My own sandbox copy overclaimed.** "Zero setup" — but the modal shows the built-in microVM tier covers *one-shot commands only*; services, sandboxed MCP and REPL kernels still need Podman. Copy narrowed to match, with a comment recording why so it cannot drift back.
+  3. **Usage tab rejected as a section**: `Today 0`, `7 days 0`, three provider rows of zeros. The image argues against the feature it illustrates. Capability stays legible via the AI Dock tab strip.
+- **Scion added as a deliberate final section**, styled quieter than the built-ins (muted label, dashed rule, "add-on" in the label) because it is opt-in and self-installed via `go` — presenting it alongside built-ins would promise a one-click experience that does not exist. Jay's call, explicitly reversible.
+- **Prototype is complete and live** at `jasonsmithio/paddleboard-demo` (GitHub Pages, `noindex`). ⚠️ **The Pages site is publicly reachable even though the repo is private** — unlisted, not secret.
+- **Open:** `persona` and `dock` are now both AI Dock modal shots and may read as similar frames down a scrolling page. Next real work is porting the design into the Hugo templates — everything so far lives outside this repo.
+
 ## 2026-07-28
 
 ### Redesign direction settled, and a first prototype to react to
