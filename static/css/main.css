@@ -367,6 +367,15 @@ main { position: relative; }
   .more-grid { grid-template-columns: 1fr; }
   .hero { padding: 52px 0 44px; }
   .hero-shot { margin-left: calc(var(--gutter) + 20px); }
-  .nav-links a { padding: 10px 11px; }
+  /* The tab strip does not fit a phone: brand + 3 links + Download overflowed
+   * the viewport by ~60px at 375px, which scrolled the whole PAGE sideways.
+   * Let the strip scroll instead — which is what an editor's tab strip does
+   * when the tabs outrun the window. Download stays reachable by swiping, and
+   * is repeated in the hero immediately below. */
+  .nav-inner { overflow-x: auto; scrollbar-width: none; }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-links { flex: none; }
+  .nav-links a { padding: 10px 11px; white-space: nowrap; }
+  .nav-links .btn { margin-left: 0; }
   .nav-links .btn-sm { margin-right: 6px; }
 }

@@ -4,6 +4,14 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-07-29
 
+### Stop the page scrolling sideways on a phone
+
+- **Jay found it on his own phone** — "you have to scroll a bit to the right to see the whole screen" — and guessed it was not an issue. It was: horizontal scroll on mobile is a real defect, and mobile-usability problems surface in Search Console, which matters on a domain with deliberate SEO standing.
+- **Measured rather than guessed.** At 375px the document was 436px wide — 61px of overflow — and walking every element for `right > viewport` pinned it on the nav: brand + Features + Docs + GitHub + Download in a non-wrapping flex row simply do not fit a phone.
+- **Fix: let the tab strip scroll, not the page.** `overflow-x: auto` on `.nav-inner` below 900px, scrollbar hidden, links `nowrap`. That is also what an editor's tab strip does when tabs outrun the window, so the fix is on-brand rather than a patch. Download drops out of first view but is repeated in the hero immediately below.
+- **Verified at 375px and 320px:** `document.scrollWidth` equals the viewport at both, so no page-level horizontal scroll; the strip carries the overflow internally (436px inside 375px).
+- ⚠️ **Process note:** the first verification said the fix had not worked — the browser was serving cached CSS (`overflow-x: visible`). Confirm the *computed* value changed before concluding a CSS fix failed.
+
 ### Rebuild the home page as an editor-native design
 
 - **Ported the approved prototype into the real Hugo templates.** The diagnosis was structural: centred hero + radial glow → eyebrow pill → 999px buttons → three-across icon-card grid → CTA band, in a `-apple-system` stack. That is the default shape of an LLM-generated dev-tool page, so **most of this change is deletion.**
