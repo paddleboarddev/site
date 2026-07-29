@@ -19,6 +19,10 @@
   <meta name="twitter:title" content="{{ $pageTitle }}">
   <meta name="twitter:description" content="{{ .Site.Params.description }}">
   <link rel="icon" type="image/svg+xml" href="{{ "paddleboard_logo.svg" | relURL }}">
+  {{/* The two faces above the fold: headline (Lilex Bold) and body (Plex).
+       Self-hosted from the app's own OFL fonts — see static/fonts. */}}
+  <link rel="preload" as="font" type="font/ttf" href="{{ "fonts/Lilex-Bold.ttf" | relURL }}" crossorigin>
+  <link rel="preload" as="font" type="font/ttf" href="{{ "fonts/IBMPlexSans-Regular.ttf" | relURL }}" crossorigin>
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
   {{- if .IsHome }}
   {{- $ld := dict
@@ -91,5 +95,21 @@
       <p>{{ with .Site.Params.version }}<a href="{{ $.Site.Params.repo }}/releases/tag/{{ . }}">{{ . }}</a> · {{ end }}© {{ now.Year }} paddleboarddev · Made by <a href="https://jasonsmith.io">Jason (Jay) Smith</a></p>
     </div>
   </footer>
+
+  {{/* The app's own status bar, as the last line of the page. Static rather than
+       fixed — a permanently pinned bar costs real screen on a phone, and the
+       device reads just as well here. */}}
+  <div class="statusbar">
+    <div class="grp">
+      <span class="boat">⛵ Set Sail: ready</span>
+      <span>⎇ main</span>
+      <span>PERSONA: senior-developer</span>
+    </div>
+    <div class="grp">
+      <span>no telemetry</span>
+      <span>GPL-3.0</span>
+      <span>{{ .Site.Params.version }}</span>
+    </div>
+  </div>
 </body>
 </html>
