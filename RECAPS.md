@@ -4,6 +4,19 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-07-29
 
+### Rebuild the home page as an editor-native design
+
+- **Ported the approved prototype into the real Hugo templates.** The diagnosis was structural: centred hero + radial glow → eyebrow pill → 999px buttons → three-across icon-card grid → CTA band, in a `-apple-system` stack. That is the default shape of an LLM-generated dev-tool page, so **most of this change is deletion.**
+- **Type and colour are the product's own.** Lilex + IBM Plex Sans (what `.ZedMono`/`.ZedSans` resolve to) self-hosted from the app's OFL files with licences; every colour lifted from `paddleboard.json`. That makes "editor-native" literal, and costs nothing — the page and the screenshots inside it now agree rather than merely coordinate.
+- **The device:** a line-number gutter down the page, section labels coloured as real syntax tokens, and the app's status bar as the final line (static, not fixed — a pinned bar is a real cost on a phone).
+- **Six narrative sections replace ten icon cards**, each anchored to a real v0.2.0 screenshot shot against `samples/demo`. Copy lives in `hugo.toml` under `[[params.sections]]` so wording stays editable without touching markup. Scion is last and deliberately quieter (muted label, dashed rule, "add-on" in the label) because it is opt-in and self-installed.
+- **Preserved deliberately:** every SEO surface (title, description, keywords, canonical, OG/Twitter, `SoftwareApplication` JSON-LD, `robots: index, follow`), the keyword-bearing prose section from `content/_index.md`, all footer attribution, and the release CTAs from PR #22. The ten feature descriptions survive as a dense two-column list rather than a card grid, so no content was lost.
+- 🐛 **Two bugs found by measuring rather than looking**, both of which would have shipped silently: `overflow:hidden` on `main` (added to clip the gutter) made it a scroll container and **broke in-page anchors including the nav's own `#features` link**; and flipping alternate rows with `order` left the screenshot in the narrow `7fr` track, so **every other image rendered 22% smaller** (measured 457/587, now uniformly 587).
+- **Fidelity call:** the gutter was first a repeating CSS gradient — cheaper, no DOM — but it renders as tick marks, and "line numbers" is the entire device. Reverted to real numbers, clipped.
+- **Re-verified the prototype's specificity trap** (`.feat p` at `0,1,1` beating `.tok-kw` at `0,1,0`, which silently greys every token). All six colours compute correctly; the CSS carries a comment explaining why that specificity is load-bearing.
+- Shipped as [PR #23](https://github.com/paddleboarddev/site/pull/23), not merged — this one changes what every visitor sees and wants a look on a real screen first.
+- **Follow-ups:** `/update-site` still writes an `icon` field nothing renders and knows nothing about `[[params.sections]]`. The "Also in the box" list is the most likely cut — it preserves content and SEO but is not in the approved design, and is one `{{ range }}` to remove.
+
 ### Point every call to action at the signed release
 
 - **The page contradicted itself.** The hero read `alpha (build from source)` with a primary button of **Get the source**, and the **header nav's primary button said the same** — while the CTA band at the foot of the same page correctly described a code-signed, notarized macOS build. The top told visitors to compile it themselves; the bottom offered them a binary. PR #20 fixed the band and missed the other two. The "alpha" framing stopped being true at **v0.1.14**.

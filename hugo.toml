@@ -27,6 +27,62 @@ disableKinds = ["taxonomy", "term"]
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
   version = "v0.2.0"
 
+  # The narrative sections of the home page, in order. `token` picks the syntax
+  # colour of the label, matching PaddleBoard Dark's own theme values. Each one
+  # is anchored to a real product screenshot in static/img/.
+  [[params.sections]]
+    token = "kw"
+    label = "persona"
+    title = "Tell your agent who to be"
+    body = "A <code>PERSONA.md</code> in your repo sets the voice, the constraints, and the house style — for the built-in agent, for subagents, and for Scion. Compose them with <code>extends:</code>. No prompt copy-paste between projects."
+    image = "img/persona.png"
+    caption = "AI Dock — Personas: discovered from the repo, plus a starter library"
+
+  [[params.sections]]
+    token = "fn"
+    label = "models"
+    title = "Bring your own keys — or no keys at all"
+    body = "Anthropic, OpenAI, Google, Vertex, Bedrock, or any OpenAI-compatible endpoint. Or run nothing but local: PaddleBoard ships a managed llama.cpp and Gemma weights, so a fresh install can talk to a model without an account."
+    image = "img/models.png"
+    caption = "Every provider in one list — including Local Models"
+
+  [[params.sections]]
+    token = "str"
+    label = "dock"
+    title = "Every agent surface in one place"
+    body = "Agents, skills, MCP servers, personas, and token usage — the AI Dock is the one window where you install, configure, and watch all of it. No scattered config files."
+    image = "img/dock.png"
+    caption = "AI Dock — Agents: Claude, Codex, Copilot, Cursor, Antigravity"
+
+  # Copy deliberately narrow: the built-in tier covers one-shot commands only.
+  # Services, sandboxed MCP and REPL kernels still need Podman — do not widen
+  # this back to "zero setup".
+  [[params.sections]]
+    token = "ty"
+    label = "sandbox"
+    title = "Let it run, safely"
+    body = "Agent-run code executes in a microVM, never on your filesystem. The built-in tier runs one-shot commands with nothing to install; Podman unlocks long-running services and sandboxed MCP. Every command still passes your approve/deny gate."
+    image = "img/sandbox.png"
+    caption = "Sandbox Backend — built-in microVM active"
+
+  [[params.sections]]
+    token = "num"
+    label = "set sail"
+    title = "Ship it from the editor"
+    body = "Set Sail deploys to six serverless platforms using open skill packs from s8sskills.com, with a status-bar indicator that tells you where the build is."
+    image = "img/setsail.png"
+    caption = "Set Sail — six platforms, quick deploy or a full pipeline"
+
+  # Last, and deliberately quieter: Scion is opt-in and self-installed, so it
+  # must not read as a built-in feature.
+  [[params.sections]]
+    token = "com"
+    label = "scion · add-on"
+    title = "Give each agent its own worktree"
+    body = "Scion is a separate tool you install yourself — PaddleBoard detects it and adds a launcher. Each agent gets its own git worktree and container, so several can work in parallel without colliding, each with its own persona."
+    image = "img/scion.png"
+    caption = "Start Scion Agent — task, template, persona"
+
   [[params.features]]
     icon = "🌐"
     title = "100% Open Source"

@@ -1,238 +1,372 @@
-/* PaddleBoard site — palette derived from the logo (Catppuccin Mocha). */
+/* PaddleBoard site — editor-native.
+ *
+ * Two rules govern this file:
+ *
+ * 1. The type is the product's own. Lilex and IBM Plex Sans are what the editor
+ *    renders in (.ZedMono/.ZedSans resolve to them), both OFL, both self-hosted
+ *    from static/fonts. That is what makes "editor-native" true, not a mood.
+ * 2. The colours are the product's own. Every value below is lifted from
+ *    assets/themes/paddleboard/paddleboard.json (PaddleBoard Dark), so the page
+ *    and the screenshots inside it agree rather than merely coordinate.
+ *
+ * Deliberately absent, because they are what made the old page read as generic:
+ * gradient hero glow, eyebrow pills, 999px buttons, a three-across icon-card
+ * grid, a CTA band, and centred everything.
+ */
+
+@font-face {
+  font-family: "Lilex";
+  src: url("../fonts/Lilex-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lilex";
+  src: url("../fonts/Lilex-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plex";
+  src: url("../fonts/IBMPlexSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Plex";
+  src: url("../fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
 :root {
-  /* dark base */
-  --crust: #181825;
-  --base: #1e1e2e;
-  --surface: #2d3250;
-  --overlay: #45475a;
-  /* text */
+  --bg: #181825;
+  --editor: #1e1e2e;
   --text: #cdd6f4;
-  --subtext: #a6adc8;
-  --ink: #1e1e2e;          /* dark text on light backgrounds */
-  --ink-soft: #4c4f69;
-  /* accents */
-  --sky: #89dceb;
-  --blue: #89b4fa;
-  --yellow: #f9e2af;
-  --pink: #f38ba8;
-  /* light surfaces */
-  --page: #ffffff;
-  --page-alt: #f4f6fc;
-  --border: #e3e8f4;
-  /* gradients */
-  --grad-board: linear-gradient(135deg, var(--sky), var(--blue));
-  --grad-paddle: linear-gradient(180deg, var(--yellow), var(--pink));
-  --grad-hero: radial-gradient(120% 120% at 50% 0%, #2d3250 0%, #1e1e2e 45%, #181825 100%);
-  --container: 1080px;
-  --radius: 16px;
+  --muted: #a6adc8;
+  --border: #45475a;
+  --faint: #2a2b3d;
+  --rail: #33344a;
+  /* syntax tokens, straight from PaddleBoard Dark */
+  --kw: #cba6f7;
+  --fn: #89b4fa;
+  --str: #a6e3a1;
+  --ty: #f9e2af;
+  --num: #fab387;
+  --com: #6c7086;
+  --gutter: 76px;
+  --wide: 1180px;
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
-
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
-  color: var(--ink);
-  background: var(--page);
-  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Plex", system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
-
-a { color: var(--blue); text-decoration: none; }
-a:hover { text-decoration: underline; }
-
-h1, h2, h3 { line-height: 1.15; letter-spacing: -0.02em; margin: 0; }
-
-.section-inner { max-width: var(--container); margin: 0 auto; padding: 0 1.5rem; }
-
-/* ---------- Buttons ---------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.7rem 1.4rem;
-  border-radius: 999px;
-  font-weight: 650;
-  font-size: 0.98rem;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+a { color: var(--fn); }
+code {
+  font-family: "Lilex", ui-monospace, monospace;
+  font-size: 0.92em;
+  color: var(--ty);
 }
-.btn:hover { text-decoration: none; transform: translateY(-1px); }
-.btn-sm { padding: 0.45rem 1rem; font-size: 0.9rem; }
-.btn-primary { background: var(--grad-board); color: #0b1020; box-shadow: 0 6px 20px rgba(137, 180, 250, 0.35); }
-.btn-ghost { background: rgba(205, 214, 244, 0.06); color: var(--text); border-color: rgba(205, 214, 244, 0.25); }
-.btn-ghost:hover { background: rgba(205, 214, 244, 0.12); }
-.btn-dark { background: var(--crust); color: var(--text); }
-.btn-outline-dark { color: var(--ink); border-color: rgba(30, 30, 46, 0.25); }
-.btn-outline-dark:hover { border-color: var(--ink); }
 
-/* ---------- Nav ---------- */
+/* ---------- nav: a tab strip, not a navbar ---------- */
 .nav {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: rgba(24, 24, 37, 0.85);
-  backdrop-filter: saturate(140%) blur(10px);
-  border-bottom: 1px solid rgba(205, 214, 244, 0.08);
+  z-index: 5;
 }
-.nav-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0.75rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
+.nav-inner { display: flex; align-items: stretch; }
 .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-weight: 750;
-  font-size: 1.2rem;
-  color: var(--text);
-}
-.brand:hover { text-decoration: none; }
-.brand-logo { display: block; border-radius: 9px; }
-.nav-links { display: flex; align-items: center; gap: 1.4rem; flex-wrap: wrap; }
-.nav-links a { color: var(--subtext); font-weight: 600; font-size: 0.95rem; }
-.nav-links a:hover { color: var(--text); text-decoration: none; }
-.nav-links a.btn-primary { color: #0b1020; }
-
-/* ---------- Hero ---------- */
-.hero {
-  position: relative;
-  background: var(--grad-hero);
-  color: var(--text);
-  overflow: hidden;
-  text-align: center;
-}
-.hero-glow {
-  position: absolute;
-  top: -30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 760px;
-  height: 760px;
-  background: radial-gradient(circle, rgba(137, 220, 235, 0.18), transparent 60%);
-  pointer-events: none;
-}
-.hero-inner {
-  position: relative;
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 5.5rem 1.5rem 5rem;
-}
-.hero-logo { filter: drop-shadow(0 12px 30px rgba(0, 0, 0, 0.45)); margin-bottom: 1.5rem; }
-.eyebrow {
-  display: inline-block;
-  margin: 0 0 1rem;
-  padding: 0.3rem 0.85rem;
-  border-radius: 999px;
-  background: rgba(249, 226, 175, 0.12);
-  color: var(--yellow);
-  font-size: 0.8rem;
-  font-weight: 650;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.hero h1 {
-  font-size: clamp(2.4rem, 6vw, 3.6rem);
-  background: linear-gradient(120deg, #ffffff 20%, var(--sky) 70%, var(--blue));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-.hero-sub {
-  margin: 1.25rem auto 2rem;
-  max-width: 620px;
-  font-size: 1.15rem;
-  color: var(--subtext);
-}
-.cta { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; }
-
-/* ---------- Features ---------- */
-.features { background: var(--page); padding: 5rem 0; }
-.section-title { font-size: clamp(1.7rem, 4vw, 2.3rem); text-align: center; }
-.section-lead { text-align: center; color: var(--ink-soft); max-width: 620px; margin: 1rem auto 3rem; font-size: 1.1rem; }
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-}
-.feature-card {
-  background: var(--page-alt);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.6rem;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-}
-.feature-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 32px rgba(30, 30, 46, 0.10);
-  border-color: var(--blue);
-}
-.feature-icon {
-  width: 50px; height: 50px;
-  display: grid; place-items: center;
-  font-size: 1.5rem;
-  border-radius: 13px;
-  background: var(--grad-board);
-  margin-bottom: 1rem;
-}
-.feature-card h3 { font-size: 1.2rem; margin-bottom: 0.4rem; color: var(--ink); }
-.feature-card p { margin: 0; color: var(--ink-soft); }
-
-/* ---------- Optional prose ---------- */
-.prose-section { background: var(--page-alt); padding: 4rem 0; }
-.prose { max-width: 720px; }
-.prose h2 { margin-bottom: 1rem; }
-.prose blockquote {
-  border-left: 4px solid var(--blue);
-  margin: 1.5rem 0; padding: 0.5rem 1rem;
-  background: #fff; border-radius: 0 8px 8px 0;
-}
-
-/* ---------- CTA band ---------- */
-.cta-band { background: var(--grad-board); padding: 4.5rem 0; }
-.cta-band-inner { text-align: center; color: #0b1020; }
-.cta-band h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); }
-.cta-band p { margin: 1rem auto 2rem; max-width: 540px; font-size: 1.1rem; color: rgba(11, 16, 32, 0.78); }
-
-/* ---------- Footer ---------- */
-.footer { background: var(--crust); color: var(--subtext); padding: 3.5rem 0 2rem; }
-.footer-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 1.5rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 2.5rem;
-  justify-content: space-between;
+  align-items: center;
+  gap: 9px;
+  padding: 0 14px;
+  border-right: 1px solid var(--border);
+  font-family: "Lilex";
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
 }
-.footer-brand { max-width: 320px; }
-.footer-brand .brand { color: var(--text); }
-.footer-brand p { margin: 0.75rem 0 0; color: var(--subtext); }
-.footer-cols { display: flex; gap: 3rem; flex-wrap: wrap; }
-.footer-col { display: flex; flex-direction: column; gap: 0.5rem; }
-.footer-col h4 { color: var(--text); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.3rem; }
-.footer-col a { color: var(--subtext); font-size: 0.95rem; }
-.footer-col a:hover { color: var(--text); }
-.footer-legal {
-  max-width: var(--container);
-  margin: 2.5rem auto 0;
-  padding: 1.5rem 1.5rem 0;
-  border-top: 1px solid rgba(205, 214, 244, 0.08);
-  font-size: 0.85rem;
-  color: var(--overlay);
+.brand-logo { display: block; width: 19px; height: 19px; }
+.nav-links { display: flex; align-items: stretch; flex: 1; }
+.nav-links a {
+  font-family: "Lilex";
+  font-size: 12.5px;
+  color: var(--com);
+  text-decoration: none;
+  padding: 10px 16px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  align-items: center;
 }
-.footer-legal p { margin: 0.2rem 0; }
+.nav-links a:hover { color: var(--text); }
+.nav-links .btn { margin-left: auto; border-right: 0; }
 
-@media (max-width: 620px) {
-  .nav-links { gap: 0.9rem; }
-  .nav-links a:not(.btn) { display: none; }
-  .hero-inner { padding: 4rem 1.25rem 3.5rem; }
+/* ---------- buttons: squared, not pills ---------- */
+.btn {
+  font-family: "Lilex";
+  font-size: 13.5px;
+  padding: 11px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  display: inline-block;
+}
+.btn-primary { background: var(--fn); color: #11111b; font-weight: 700; }
+.btn-ghost { border-color: var(--border); color: var(--text); }
+.btn-ghost:hover { border-color: var(--fn); color: var(--fn); }
+.btn-sm { padding: 7px 14px; font-size: 12.5px; align-self: center; margin-right: 12px; }
+
+/* ---------- the gutter rail: the signature device ----------
+ * Real numbers, not a repeating gradient. A gradient is cheaper but renders as
+ * tick marks, and "line numbers" is precisely the thing that makes the page read
+ * as an editor rather than as decoration. The list is a fixed length and clipped
+ * — it never needs to match the page height, only to outlast it.
+ */
+/* No overflow:hidden here — it makes main a scroll container, which breaks
+ * in-page anchors like the nav's #features link. `.rail` clips itself. */
+main { position: relative; }
+.rail {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--gutter);
+  border-right: 1px solid var(--faint);
+  padding-top: 44px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: "Lilex";
+  font-size: 11px;
+  line-height: 26px;
+  color: var(--rail);
+  user-select: none;
+  pointer-events: none;
+  overflow: hidden;
+}
+.rail span { padding-right: 14px; }
+
+.inner { margin-left: var(--gutter); max-width: var(--wide); padding: 0 40px; }
+
+/* ---------- hero ---------- */
+.hero { padding: 88px 0 76px; }
+.hero .eyebrow {
+  font-family: "Lilex";
+  font-size: 13px;
+  color: var(--com);
+  margin: 0 0 22px;
+}
+.hero .eyebrow::before { content: "// "; }
+.hero h1 {
+  font-family: "Lilex";
+  font-weight: 700;
+  font-size: clamp(34px, 5.6vw, 68px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin: 0 0 26px;
+  max-width: 15ch;
+}
+.hero h1 .own { color: var(--str); }
+.hero-sub { font-size: 19px; color: var(--muted); max-width: 56ch; margin: 0 0 34px; }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-meta { font-family: "Lilex"; font-size: 12px; color: var(--com); margin-top: 20px; }
+
+/* the hero shot runs off the right edge on purpose — the page is not centred */
+.hero-shot {
+  margin: 54px 0 0 calc(var(--gutter) + 40px);
+  border: 1px solid var(--border);
+  border-right: 0;
+  border-radius: 6px 0 0 6px;
+  overflow: hidden;
+  line-height: 0;
+  background: var(--editor);
+}
+.hero-shot img { width: 100%; height: auto; display: block; }
+
+/* ---------- feature sections ---------- */
+.feat {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 9fr);
+  gap: 56px;
+  align-items: center;
+  padding: 60px 40px;
+  border-top: 1px solid var(--faint);
+  margin-left: var(--gutter);
+  max-width: var(--wide);
+}
+.feat.flip .feat-copy { order: 2; }
+/* Reordering alone leaves the image in the narrow 7fr column on flipped rows,
+ * so every other screenshot renders ~22% smaller. Swap the track widths too. */
+.feat.flip { grid-template-columns: minmax(0, 9fr) minmax(0, 7fr); }
+.feat h2 {
+  font-family: "Lilex";
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+  max-width: 20ch;
+}
+.feat p { margin: 0; color: var(--muted); max-width: 52ch; }
+/* NOTE: element+class specificity is load-bearing here. `.feat p` sets the muted
+ * prose colour at 0,1,1 and will beat a bare `.tok-kw` at 0,1,0 — which silently
+ * kills every token colour, and with it the page's whole signature device. */
+.feat p.tok {
+  font-family: "Lilex";
+  font-size: 12px;
+  margin: 0 0 12px;
+  letter-spacing: 0.06em;
+}
+.feat p.tok-kw { color: var(--kw); }
+.feat p.tok-fn { color: var(--fn); }
+.feat p.tok-str { color: var(--str); }
+.feat p.tok-ty { color: var(--ty); }
+.feat p.tok-num { color: var(--num); }
+.feat p.tok-com { color: var(--com); }
+/* the add-on section is deliberately quieter than the built-in features */
+.feat.addon { border-top-style: dashed; }
+.shot { margin: 0; }
+.shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--editor);
+}
+.shot figcaption {
+  font-family: "Lilex";
+  font-size: 11px;
+  color: var(--rail);
+  margin-top: 8px;
+}
+
+/* ---------- prose (keyword-bearing body copy, kept for search) ---------- */
+.prose {
+  padding: 70px 40px;
+  border-top: 1px solid var(--faint);
+  margin-left: var(--gutter);
+  max-width: var(--wide);
+}
+.prose h2 {
+  font-family: "Lilex";
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  margin: 34px 0 10px;
+}
+.prose h2:first-child { margin-top: 0; }
+.prose p { color: var(--muted); max-width: 68ch; margin: 0 0 14px; }
+
+/* ---------- everything else: a dense list, not a card grid ---------- */
+.more {
+  padding: 60px 40px;
+  border-top: 1px solid var(--faint);
+  margin-left: var(--gutter);
+  max-width: var(--wide);
+}
+.more h2 {
+  font-family: "Lilex";
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0 0 26px;
+  letter-spacing: -0.01em;
+}
+.more-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 48px; }
+.more-item h3 {
+  font-family: "Lilex";
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 5px;
+  color: var(--text);
+}
+.more-item p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+/* ---------- closing ---------- */
+.closing {
+  padding: 70px 40px 80px;
+  border-top: 1px solid var(--faint);
+  margin-left: var(--gutter);
+  max-width: var(--wide);
+}
+.closing h2 {
+  font-family: "Lilex";
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+.closing p { color: var(--muted); max-width: 58ch; margin: 0 0 26px; }
+
+/* ---------- footer ---------- */
+.footer { border-top: 1px solid var(--border); margin-left: var(--gutter); }
+.footer-inner {
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+  padding: 46px 40px 34px;
+  max-width: var(--wide);
+}
+.footer-brand p { color: var(--com); font-size: 14px; margin: 10px 0 0; max-width: 30ch; }
+.footer-cols { display: flex; gap: 56px; flex-wrap: wrap; margin-left: auto; }
+.footer-col { display: flex; flex-direction: column; gap: 7px; }
+.footer-col h4 {
+  font-family: "Lilex";
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--com);
+  margin: 0 0 5px;
+}
+.footer-col a { color: var(--muted); text-decoration: none; font-size: 14px; }
+.footer-col a:hover { color: var(--fn); }
+.footer-legal {
+  padding: 18px 40px;
+  max-width: var(--wide);
+  border-top: 1px solid var(--faint);
+}
+.footer-legal p { color: var(--com); font-size: 12.5px; margin: 3px 0; }
+
+/* ---------- status bar: the app's own, as the page's last line ----------
+ * Static rather than fixed: a permanently pinned bar is a real cost on a phone,
+ * and the device reads just as well as the final line of the page.
+ */
+.statusbar {
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 9px 14px;
+  font-family: "Lilex";
+  font-size: 11.5px;
+  color: var(--com);
+}
+.statusbar .grp { display: flex; gap: 20px; flex-wrap: wrap; }
+.statusbar .boat { color: var(--str); }
+
+@media (max-width: 900px) {
+  :root { --gutter: 34px; }
+  .inner, .feat, .prose, .more, .closing, .footer-inner, .footer-legal {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .feat { grid-template-columns: 1fr; gap: 26px; }
+  .feat.flip .feat-copy { order: 0; }
+  .more-grid { grid-template-columns: 1fr; }
+  .hero { padding: 52px 0 44px; }
+  .hero-shot { margin-left: calc(var(--gutter) + 20px); }
+  .nav-links a { padding: 10px 11px; }
+  .nav-links .btn-sm { margin-right: 6px; }
 }

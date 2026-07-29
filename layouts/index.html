@@ -1,48 +1,71 @@
 {{ define "main" }}
-<section class="hero">
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <img class="hero-logo" src="{{ "paddleboard_logo.svg" | relURL }}" alt="PaddleBoard logo" width="96" height="96">
-    <p class="eyebrow">Open-source · AI-native · {{ .Site.Params.version }}, signed &amp; notarized</p>
-    <h1>{{ .Site.Params.tagline }}</h1>
-    <p class="hero-sub">{{ .Site.Params.subtitle }}</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="{{ .Site.Params.repo }}/releases/latest">Download</a>
-      <a class="btn btn-ghost" href="{{ .Site.Params.docs }}">Read the docs</a>
+{{/* The gutter. 420 is comfortably longer than the page; the rail is clipped,
+     so the count only has to outlast the content, never match it. */}}
+<div class="rail" aria-hidden="true">{{ range seq 420 }}<span>{{ . }}</span>{{ end }}</div>
+
+<section class="hero inner">
+  <p class="eyebrow">Open-source · AI-native · {{ .Site.Params.version }}, signed &amp; notarized</p>
+  {{/* The tagline ends "you actually own." — colour the promise, not the whole line. */}}
+  <h1>{{ replace .Site.Params.tagline "you actually own." "you <span class=\"own\">actually own</span>." | safeHTML }}</h1>
+  <p class="hero-sub">{{ .Site.Params.subtitle }}</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="{{ .Site.Params.repo }}/releases/latest">Download</a>
+    <a class="btn btn-ghost" href="{{ .Site.Params.docs }}">Read the docs</a>
+  </div>
+  <p class="hero-meta">macOS (Apple silicon, signed &amp; notarized) · Linux x86_64 tarball · GPL-3.0</p>
+</section>
+
+<div class="hero-shot">
+  <img src="{{ "img/hero.png" | relURL }}" width="1600" height="1004"
+       alt="PaddleBoard editing a FastAPI project in the PaddleBoard Dark theme">
+</div>
+
+{{/* Narrative sections, in hugo.toml order. Alternating sides break the rhythm
+     so a scroll does not read as a stack of identical rows. */}}
+<div id="features">
+{{- range $i, $s := .Site.Params.sections }}
+  <section class="feat{{ if modBool $i 2 }} flip{{ end }}{{ if in $s.label "add-on" }} addon{{ end }}">
+    <div class="feat-copy">
+      <p class="tok tok-{{ $s.token }}">{{ $s.label }}</p>
+      <h2>{{ $s.title }}</h2>
+      <p>{{ $s.body | safeHTML }}</p>
     </div>
+    <figure class="shot">
+      <img src="{{ $s.image | relURL }}" alt="{{ $s.caption }}" loading="lazy" decoding="async">
+      <figcaption>fig. {{ add $i 1 }} &nbsp;·&nbsp; {{ $s.caption }}</figcaption>
+    </figure>
+  </section>
+{{- end }}
+</div>
+
+{{/* Everything the narrative sections do not cover. A dense list rather than an
+     icon-card grid: the content earns its place, the cards did not. */}}
+<section class="more">
+  <h2>Also in the box</h2>
+  <div class="more-grid">
+  {{- range .Site.Params.features }}
+    <div class="more-item">
+      <h3>{{ .title }}</h3>
+      <p>{{ .body | safeHTML }}</p>
+    </div>
+  {{- end }}
   </div>
 </section>
 
-<section id="features" class="features">
-  <div class="section-inner">
-    <h2 class="section-title">Everything you'd expect, nothing you didn't ask for</h2>
-    <p class="section-lead">PaddleBoard layers an AI-native workflow on top of Zed — on your terms.</p>
-    <div class="feature-grid">
-      {{ range .Site.Params.features }}
-      <article class="feature-card">
-        <div class="feature-icon">{{ .icon }}</div>
-        <h3>{{ .title }}</h3>
-        <p>{{ .body | safeHTML }}</p>
-      </article>
-      {{ end }}
-    </div>
-  </div>
-</section>
-
+{{/* Keyword-bearing body copy from content/_index.md. Load-bearing for search —
+     the site ranks on "open source AI IDE" and "open source AI harness". */}}
 {{ with .Content }}
-<section class="prose-section">
-  <div class="section-inner prose">{{ . }}</div>
-</section>
+<section class="prose">{{ . }}</section>
 {{ end }}
 
-<section class="cta-band">
-  <div class="section-inner cta-band-inner">
-    <h2>Ready to paddle your own board?</h2>
-    <p>Still early, but ready to use: the macOS build is code-signed and notarized by Apple, so it opens without a Gatekeeper detour. Linux ships as an x86_64 tarball — and the source is always there if you'd rather build it yourself.</p>
-    <div class="cta">
-      <a class="btn btn-dark" href="{{ .Site.Params.repo }}/releases/latest">Download</a>
-      <a class="btn btn-outline-dark" href="{{ .Site.Params.docs }}">Documentation</a>
-    </div>
+<section class="closing">
+  <h2>No telemetry. No hosted plan. No account.</h2>
+  <p>PaddleBoard is GPL-3.0 and a fork of <a href="https://zed.dev">Zed</a>. Your keys stay yours,
+     your code stays local, and nothing phones home — the telemetry path is inert by design,
+     not by setting.</p>
+  <div class="cta">
+    <a class="btn btn-primary" href="{{ .Site.Params.repo }}/releases/latest">Download</a>
+    <a class="btn btn-ghost" href="{{ .Site.Params.repo }}">Get the source</a>
   </div>
 </section>
 {{ end }}
