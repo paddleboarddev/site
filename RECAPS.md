@@ -2,6 +2,18 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-07-30
+
+### Give the site a share card
+
+- **Found while answering a different question.** Jay asked where the *GitHub* social preview gets uploaded; checking that turned up a bigger gap on this side — **the site had no `og:image` at all**, and `twitter:card` was `summary`.
+- **Why that mattered more than the GitHub one.** The launch plan is Bluesky/Mastodon + LinkedIn, and the link being shared is mostly **paddleboard.dev**, not the repo. With no `og:image` those posts render as a bare text card. The weakest possible presentation, on the exact surface the launch runs on.
+- **Reused the app repo's card** rather than making a second one — `assets/branding/social-preview.png` → `static/img/social-card.png`. It was already built at 1280×640, which is exactly the ratio a large summary card wants, so the GitHub preview and the site share card are now the same image.
+- ⚠️ **`og:image` must be an absolute URL.** Every consumer silently drops a relative path, and the result is indistinguishable from having no card — nothing warns, the tag is simply there and ignored. Used Hugo's `absURL`, and verified the built HTML emits `https://paddleboard.dev/img/social-card.png` rather than `/img/...`.
+- ⚠️ **`summary` → `summary_large_image`.** The old value renders a small square thumbnail, which crops a 2:1 card into nothing useful. Having the image without this change would have looked broken rather than absent.
+- Added `og:image:width`/`height` (lets consumers reserve layout before fetching) and `:alt` on both tag families.
+- Lives in `baseof.html`, so every page gets the card, not just the home page.
+
 ## 2026-07-29
 
 ### Fit the nav on a phone, and stop the hero shot running off
