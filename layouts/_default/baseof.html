@@ -15,9 +15,23 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ .Permalink }}">
   <meta property="og:locale" content="en_US">
-  <meta name="twitter:card" content="summary">
+  {{/* The card every share of this link renders as — Bluesky, Mastodon,
+       LinkedIn, Slack, Discord. It MUST be an absolute URL: relative paths are
+       silently dropped by every one of them, which looks identical to having no
+       card at all. Same 1280x640 asset as the GitHub repo social preview, built
+       by script/build-social-preview in the app repo. */}}
+  {{- $ogImage := absURL "img/social-card.png" }}
+  <meta property="og:image" content="{{ $ogImage }}">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="PaddleBoard — the open-source AI IDE you actually own">
+  {{/* summary_large_image, not summary: `summary` renders a small square thumbnail
+       and crops a 2:1 card to nothing useful. */}}
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ $pageTitle }}">
   <meta name="twitter:description" content="{{ .Site.Params.description }}">
+  <meta name="twitter:image" content="{{ $ogImage }}">
+  <meta name="twitter:image:alt" content="PaddleBoard — the open-source AI IDE you actually own">
   <link rel="icon" type="image/svg+xml" href="{{ "paddleboard_logo.svg" | relURL }}">
   {{/* The two faces above the fold: headline (Lilex Bold) and body (Plex).
        Self-hosted from the app's own OFL fonts — see static/fonts. */}}
