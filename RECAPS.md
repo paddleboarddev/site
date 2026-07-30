@@ -4,6 +4,18 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-07-29
 
+### Fit the nav on a phone, and stop the hero shot running off
+
+- **Two more mobile issues from Jay, both on surfaces the earlier fix touched.** Same day as the sideways-scroll fix below, which is worth noting: that fix stopped the *page* moving but did not make the nav usable.
+- ⚠️ **"Let the strip scroll" solved the wrong half of the nav problem.** It removed the page-level overflow — the actual defect — but left `Download` rendered off screen, cut mid-word at 375px. The one item on the strip that has to be visible was the one you had to swipe to find, and "it's repeated in the hero below" was reasoning about the fix rather than about the user. Jay's ask was explicit: shrink it to *fill* the screen.
+- **The wordmark is what buys the room.** Measured: the brand cell was 143px of the 436px the strip needed, ~100px of that the "PaddleBoard" text at 13px — more than any two links, and redundant with the h1 directly beneath it. Hiding the span below 900px and trimming link type (12.5→12px) and padding (11→9px) brings the strip to 320px at a 320px viewport.
+- **`flex: none` was the reason it didn't fill.** With the links sized to content, `margin-left: auto` on Download had no free space to consume, so the strip ended 60px short of the right edge — it fit, but with a dead gap, which is not what "fill the screen" means. `flex: 1 0 auto` grows the row to fill while refusing to shrink below content width; plain `flex: 1` would let the links compress into each other on a narrower phone.
+- **`overflow-x: auto` deliberately kept** as a fallback rather than deleted. It is no longer the mechanism, but it means a fifth nav link degrades to a scrolling strip instead of pushing the page sideways again.
+- **The hero shot was inheriting the desktop treatment.** `border-right: 0` and `border-radius: 6px 0 0 6px` — the intentional right-edge bleed, since the page is not centred. At 1280px the cut edge reads as composition; at 375px there is no width left for the eye to infer the image continues, so it just looks broken. Gave it a 20px right inset matching `.inner`, all four borders, and a full radius.
+- **Verified by measurement, not eyeball:** no horizontal overflow at 375px or 320px (`nav-inner.scrollWidth == clientWidth`, `document.scrollWidth == viewport`), Download flush right at both, and desktop confirmed unchanged at 1280px — wordmark back, `border-right: 0`, `radius: 6px 0 0 6px`.
+- ⏸️ **Not fixed, and worth a decision:** a 1600×1004 desktop screenshot displayed at 301px is illegible on a phone — contained now, but unreadable. Every product shot on the page has this problem. The options are a phone-specific crop of each shot, or accepting them as texture rather than as evidence.
+- 📸 **Tooling note, same class as the cached-CSS trap below:** the browser pane reported itself hidden, which silently suspends `window.scrollTo` — it returned `scrollY: 0` with no error while the page was 8012px tall. Shifting the document with a temporary negative `margin-top` got the off-screen element into frame for a screenshot. A scroll that reports no movement is worth reading as a stuck pane, not a mis-measured offset.
+
 ### Stop the page scrolling sideways on a phone
 
 - **Jay found it on his own phone** — "you have to scroll a bit to the right to see the whole screen" — and guessed it was not an issue. It was: horizontal scroll on mobile is a real defect, and mobile-usability problems surface in Search Console, which matters on a domain with deliberate SEO standing.

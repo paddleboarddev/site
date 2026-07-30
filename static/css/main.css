@@ -366,16 +366,39 @@ main { position: relative; }
   .feat.flip .feat-copy { order: 0; }
   .more-grid { grid-template-columns: 1fr; }
   .hero { padding: 52px 0 44px; }
-  .hero-shot { margin-left: calc(var(--gutter) + 20px); }
-  /* The tab strip does not fit a phone: brand + 3 links + Download overflowed
-   * the viewport by ~60px at 375px, which scrolled the whole PAGE sideways.
-   * Let the strip scroll instead — which is what an editor's tab strip does
-   * when the tabs outrun the window. Download stays reachable by swiping, and
-   * is repeated in the hero immediately below. */
+
+  /* On desktop the hero shot bleeds off the right edge on purpose (see the rule
+   * above) — the page is not centred, and the cut edge implies the image
+   * continues. A phone gives the eye no width to read that as composition, so
+   * the same bleed just looks like a broken image. Close it here: inset on the
+   * right to match .inner's 20px, all four borders, full radius. */
+  .hero-shot {
+    margin-left: calc(var(--gutter) + 20px);
+    margin-right: 20px;
+    border-right: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  /* The tab strip does not fit a phone: brand + 3 links + Download needed 436px
+   * at a 375px viewport. Shrink it to fit rather than letting it scroll — a
+   * cut-off "Download" is the one thing on the strip that has to be visible.
+   *
+   * The wordmark is what buys the room: at 13px it costs ~100px of the 143px
+   * brand cell, more than any two links, and it is redundant with the h1
+   * directly below it. Logo only below 900px; the type and padding shrink does
+   * the rest. Verified with no horizontal overflow at 375px and at 320px.
+   *
+   * overflow-x stays as a fallback, not the mechanism: if a fifth link is ever
+   * added the strip degrades to scrolling instead of pushing the page sideways. */
   .nav-inner { overflow-x: auto; scrollbar-width: none; }
   .nav-inner::-webkit-scrollbar { display: none; }
-  .nav-links { flex: none; }
-  .nav-links a { padding: 10px 11px; white-space: nowrap; }
-  .nav-links .btn { margin-left: 0; }
-  .nav-links .btn-sm { margin-right: 6px; }
+  .brand { padding: 0 11px; }
+  .brand span { display: none; }
+  /* grow to fill the strip so Download sits flush right (its margin-left:auto
+   * needs free space to consume), but never shrink below the links' own width —
+   * flex:1 would let them compress into each other on a narrower phone. */
+  .nav-links { flex: 1 0 auto; }
+  .nav-links a { padding: 10px 9px; font-size: 12px; white-space: nowrap; }
+  .nav-links .btn { margin-left: auto; }
+  .nav-links .btn-sm { padding: 6px 11px; font-size: 12px; margin-right: 6px; }
 }
