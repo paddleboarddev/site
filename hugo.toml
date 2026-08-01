@@ -25,7 +25,7 @@ disableKinds = ["taxonomy", "term"]
   docs = "https://docs.paddleboard.dev"
   bluesky = "https://bsky.app/profile/paddleboard.dev"
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
-  version = "v0.2.2"
+  version = "v0.2.3"
 
   # The narrative sections of the home page, in order. `token` picks the syntax
   # colour of the label, matching PaddleBoard Dark's own theme values. Each one
