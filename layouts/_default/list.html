@@ -1,0 +1,28 @@
+{{ define "main" }}
+<div class="rail" aria-hidden="true">{{ range seq 420 }}<span>{{ . }}</span>{{ end }}</div>
+
+<section class="postlist inner">
+  <p class="eyebrow">{{ .Title }}</p>
+  <h1>{{ default .Title .Params.heading }}</h1>
+  {{ with .Content }}<div class="postlist-intro">{{ . }}</div>{{ end }}
+
+  {{ $posts := .Pages }}
+  {{ if $posts }}
+  <ul class="posts">
+    {{ range $posts }}
+    <li class="post-row">
+      <a class="post-link" href="{{ .RelPermalink }}">
+        <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>
+        <span class="post-name">{{ .Title }}</span>
+      </a>
+      {{ with .Description }}<p class="post-sum">{{ . }}</p>{{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ else }}
+  {{/* The section exists before its first post does — this branch is what the
+       page renders in that window, rather than an empty <ul>. */}}
+  <p class="post-empty">Nothing published yet.</p>
+  {{ end }}
+</section>
+{{ end }}

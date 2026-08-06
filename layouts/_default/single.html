@@ -1,0 +1,27 @@
+{{ define "main" }}
+{{/* Same gutter rail as the home page. A post that dropped it would read as a
+     different site — the rail is the one device carrying the "this is an editor"
+     idea, and an article page is where a reader spends the most time looking at
+     it. 420 outlasts any post; the rail clips itself. */}}
+<div class="rail" aria-hidden="true">{{ range seq 420 }}<span>{{ . }}</span>{{ end }}</div>
+
+<article class="post inner">
+  <header class="post-head">
+    <p class="eyebrow">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      {{ with .ReadingTime }} · {{ . }} min read{{ end }}
+    </p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="post-lede">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="post-body">
+    {{ .Content }}
+  </div>
+
+  <footer class="post-foot">
+    <a class="btn btn-ghost" href="{{ "/blog/" | relURL }}">← All posts</a>
+    <a class="btn btn-primary" href="{{ .Site.Params.repo }}/releases/latest">Download PaddleBoard</a>
+  </footer>
+</article>
+{{ end }}

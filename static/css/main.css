@@ -356,8 +356,138 @@ main { position: relative; }
 .statusbar .grp { display: flex; gap: 20px; flex-wrap: wrap; }
 .statusbar .boat { color: var(--str); }
 
+/* ---------- blog: post page + index ----------
+ * Deliberately built from the existing tokens rather than a new palette. The
+ * site's whole character is that it looks like the editor; a stock article page
+ * dropped in the middle of it would read as a different site bolted on.
+ *
+ * Body copy is Plex at 68ch to match `.prose p` — long-form is the one place on
+ * this site where reading comfort outranks the monospace look, so Lilex is kept
+ * for headings, code and metadata only.
+ */
+.post, .postlist {
+  padding: 70px 40px 90px;
+  max-width: var(--wide);
+}
+.post-head { border-bottom: 1px solid var(--faint); padding-bottom: 26px; margin-bottom: 34px; }
+.post .eyebrow, .postlist .eyebrow {
+  font-family: "Lilex";
+  font-size: 13px;
+  color: var(--com);
+  margin: 0 0 18px;
+}
+.post .eyebrow::before, .postlist .eyebrow::before { content: "// "; }
+.post h1, .postlist h1 {
+  font-family: "Lilex";
+  font-weight: 700;
+  /* Smaller than the home hero on purpose: a post title is a heading, not the
+   * site's headline, and matching the hero would fight it for rank. */
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+.post-lede { color: var(--muted); font-size: 18px; max-width: 68ch; margin: 0; }
+
+.post-body { font-size: 16.5px; line-height: 1.72; }
+.post-body > * { max-width: 68ch; }
+.post-body p, .post-body li { color: var(--muted); }
+.post-body h2 {
+  font-family: "Lilex";
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  margin: 46px 0 12px;
+}
+.post-body h3 {
+  font-family: "Lilex";
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--text);
+  margin: 32px 0 10px;
+}
+.post-body strong { color: var(--text); font-weight: 600; }
+.post-body a { color: var(--fn); }
+.post-body ul, .post-body ol { padding-left: 22px; margin: 0 0 18px; }
+.post-body li { margin: 0 0 8px; }
+.post-body blockquote {
+  border-left: 2px solid var(--rail);
+  margin: 22px 0;
+  padding: 2px 0 2px 18px;
+  color: var(--com);
+}
+.post-body hr { border: 0; border-top: 1px solid var(--faint); margin: 40px 0; }
+.post-body img { max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 6px; }
+
+/* Tables scroll inside themselves rather than widening the page. */
+.post-body .table-wrap { overflow-x: auto; max-width: 100%; }
+.post-body table { border-collapse: collapse; font-size: 14.5px; }
+.post-body th, .post-body td { border: 1px solid var(--faint); padding: 8px 12px; text-align: left; }
+.post-body th { font-family: "Lilex"; color: var(--text); font-weight: 700; }
+.post-body td { color: var(--muted); }
+
+/* Code. Inline is tinted rather than boxed — a box per identifier makes a
+ * technical paragraph look like a ransom note. */
+.post-body code {
+  font-family: "Lilex";
+  font-size: 0.92em;
+  color: var(--ty);
+}
+.post-body pre {
+  background: var(--editor);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 18px;
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0 0 20px;
+  line-height: 1.6;
+}
+.post-body pre code { color: var(--text); font-size: 13.5px; }
+
+/* Chroma classes mapped onto the app's own syntax tokens, so a code block here
+ * is coloured exactly like the same code in the editor. */
+.post-body .k, .post-body .kd, .post-body .kn, .post-body .kr, .post-body .kt { color: var(--kw); }
+.post-body .nf, .post-body .nx { color: var(--fn); }
+.post-body .s, .post-body .s1, .post-body .s2, .post-body .sb { color: var(--str); }
+.post-body .nc, .post-body .nn { color: var(--ty); }
+.post-body .m, .post-body .mi, .post-body .mf { color: var(--num); }
+.post-body .c, .post-body .c1, .post-body .cm, .post-body .cp { color: var(--com); font-style: italic; }
+
+.post-foot {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--faint);
+  margin-top: 54px;
+  padding-top: 30px;
+}
+
+/* Index: a dense list, matching `.more` rather than a card grid. */
+.postlist-intro p { color: var(--muted); max-width: 68ch; margin: 0 0 34px; }
+.posts { list-style: none; padding: 0; margin: 0; }
+.post-row { border-top: 1px solid var(--faint); padding: 20px 0; }
+.post-link { display: flex; gap: 18px; align-items: baseline; text-decoration: none; }
+.post-date {
+  font-family: "Lilex";
+  font-size: 12.5px;
+  color: var(--com);
+  flex: none;
+  width: 92px;
+}
+.post-name { font-family: "Lilex"; font-weight: 700; font-size: 17px; color: var(--text); }
+.post-link:hover .post-name { color: var(--fn); }
+.post-sum { color: var(--muted); margin: 8px 0 0 110px; max-width: 68ch; font-size: 14.5px; }
+.post-empty { color: var(--com); font-family: "Lilex"; font-size: 14px; }
+
 @media (max-width: 900px) {
   :root { --gutter: 34px; }
+  .post, .postlist { padding: 48px 20px 64px; }
+  .post-link { flex-direction: column; gap: 4px; }
+  .post-date { width: auto; }
+  .post-sum { margin-left: 0; }
+
   .inner, .feat, .prose, .more, .closing, .footer-inner, .footer-legal {
     padding-left: 20px;
     padding-right: 20px;
@@ -399,6 +529,11 @@ main { position: relative; }
    * flex:1 would let them compress into each other on a narrower phone. */
   .nav-links { flex: 1 0 auto; }
   .nav-links a { padding: 10px 9px; font-size: 12px; white-space: nowrap; }
+  /* The "fifth link" the comment above anticipated. Blog is the one nav item
+   * that is not a conversion path, so it is the one that yields the ~46px
+   * rather than letting the strip scroll and risk cutting off Download. It
+   * stays reachable on a phone via the footer. */
+  .nav-links .nav-blog { display: none; }
   .nav-links .btn { margin-left: auto; }
   .nav-links .btn-sm { padding: 6px 11px; font-size: 12px; margin-right: 6px; }
 }
