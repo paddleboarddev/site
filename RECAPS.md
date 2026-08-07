@@ -2,6 +2,19 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-08-06
+
+### A blog section, built for the beta engineering post — scaffolding only, nothing published
+
+- **The site had no blog at all.** `content/` held exactly one file (`_index.md`) and `layouts/` had only `index.html`, `robots.txt` and `_default/baseof.html`. Adding `list.html`, `single.html`, a `content/blog/` section, a nav entry and post styling is what "put the post on paddleboard.dev" actually costs — worth knowing two weeks before the launch rather than the morning of.
+- **Built from the existing tokens, not a new palette.** The whole character of this site is that it looks like the editor; a stock Hugo article page would read as a different site bolted on. Posts keep the `.rail` line-number gutter, the `// ` comment eyebrow, Lilex for headings/code/metadata, and Chroma classes mapped onto the app's own syntax tokens so a code block here is coloured exactly like the same code in PaddleBoard.
+- **Body copy is Plex at 68ch, deliberately not Lilex.** Long-form is the one place on this site where reading comfort outranks the monospace look.
+- ⚠️ **The nav gained a fourth link, which is the exact case `main.css` warned about** — *"if a fifth link is ever added the strip degrades to scrolling"*, and a scrolling strip can push **Download** out of view on a phone. Rather than let that happen, **Blog is hidden below 900px** and lives in the footer's Project column instead. It's the only nav item that isn't a conversion path, so it's the one that yields.
+- **Per-page `og:description` and `og:type: article`.** Every page previously shared the home page's description, so a shared post link would have described the product instead of the post — the whole reason someone clicked. Also emits `article:published_time`, and an RSS `<link rel="alternate">`.
+- ⚠️ **The deploy runs `hugo --gc --minify` with NO `--buildFuture`, and Hugo silently drops future-dated content.** A post dated 11 Aug merged on 10 Aug simply will not appear — no error, no warning, a successful deploy with a missing post. Found by accident when the preview build produced no post page. Set a post's `date` to on-or-before the day it is merged.
+- ⚠️ **Mobile is NOT visually verified.** Headless Chrome's `--window-size` does not emulate a device, so `<meta viewport>` isn't honoured and captures clip — the *existing, known-good* home page clips identically at 390px, which is how the artifact was identified rather than "fixed". Check on a real device or with DevTools emulation before merging.
+- **Nothing is published.** No post content is committed; the empty state renders "Nothing published yet." Merging deploys the section, not the post — the deploy workflow is `push: [main]`.
+
 ## 2026-07-30
 
 ### Give the site a share card
