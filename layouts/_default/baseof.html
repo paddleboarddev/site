@@ -38,7 +38,10 @@
        and crops a 2:1 card to nothing useful. */}}
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{ $pageTitle }}">
-  <meta name="twitter:description" content="{{ .Site.Params.description }}">
+  {{/* $desc, not the site description: the og: pair above is already per-page, and
+       a Twitter-card reader that fell back to the site blurb would describe the
+       product on a link someone shared to read the post. */}}
+  <meta name="twitter:description" content="{{ $desc }}">
   <meta name="twitter:image" content="{{ $ogImage }}">
   <meta name="twitter:image:alt" content="PaddleBoard — the open-source AI IDE you actually own">
   <link rel="icon" type="image/svg+xml" href="{{ "paddleboard_logo.svg" | relURL }}">
