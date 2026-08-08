@@ -2,6 +2,16 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-08-08
+
+### Verified the blog section against the live site, and fixed the share card it left behind
+
+- ✅ **Mobile is now visually verified** — the flag this section shipped with on 2026-08-06, when headless Chrome couldn't emulate a device. Checked in a real emulated viewport at 375px: **Blog correctly absent from the nav, Download intact**, Blog present in the footer's Project column, and `scrollWidth == clientWidth` with zero elements extending past the viewport. That last check matters because this page has shipped sideways-scroll bugs twice before.
+- **The breakpoint is `max-width: 900px`, so Blog is hidden *at* 900, not below it.** The original recap said "below 900px" — off by one pixel, harmless, but the media query is the authority. Visible from 901px up; confirmed at 1280.
+- ⚠️ **`single.html` had never rendered a real post anywhere** — the section shipped with no content, and the one preview attempt produced nothing because of the future-date trap. Exercised it locally with a throwaway post covering headings, lists, a blockquote, inline code and a Rust fence: rail gutter, reading time, Chroma classes, the all-posts link and the download CTA all render; the list page drops its empty state; the post appears in `blog/index.xml`.
+- ⚠️ **Found a real bug that only shows up once a post exists: `twitter:description` was hardcoded to the site description** while `og:description` was correctly per-page. Anything preferring Twitter-card tags — Slack, Discord and LinkedIn unfurlers — would have described the product on a link someone shared to read the post, which is the exact failure the og: work was meant to prevent. One-word fix (`$desc`), verified per-page on a post and still site-level on the home page.
+- **Note for the day the post lands:** the deploy still runs `hugo --gc --minify` with no `--buildFuture`, so a future-dated post silently does not appear. Date it on or before the merge day.
+
 ## 2026-08-06
 
 ### A blog section, built for the beta engineering post — scaffolding only, nothing published
