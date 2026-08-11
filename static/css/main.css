@@ -452,6 +452,10 @@ main { position: relative; }
 .post-body .nf, .post-body .nx { color: var(--fn); }
 .post-body .s, .post-body .s1, .post-body .s2, .post-body .sb { color: var(--str); }
 .post-body .nc, .post-body .nn { color: var(--ty); }
+/* Shell variable names (`nv`). Added when the first real post's code block was a
+ * bash array — without it the identifier the excerpt is *about* renders as plain
+ * body text while its comments and strings are coloured. */
+.post-body .nv { color: var(--fn); }
 .post-body .m, .post-body .mi, .post-body .mf { color: var(--num); }
 .post-body .c, .post-body .c1, .post-body .cm, .post-body .cp { color: var(--com); font-style: italic; }
 
