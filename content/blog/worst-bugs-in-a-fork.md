@@ -67,6 +67,33 @@ The maintenance rule falls out of the partition: rename another directory, add i
 unwatched** — which is precisely the blind spot the guards exist to close, so the
 lists are load-bearing and the scripts say so.
 
+In full, that is the entire configuration the two guards need:
+
+```bash
+# script/check-dropped-upstream-files — directories I renamed.
+# Upstream adds under the left-hand path; I look for it under the right-hand one.
+RENAME_MAP=(
+    "crates/zed:crates/paddleboard"
+    "crates/zed_actions:crates/paddleboard_actions"
+    "crates/zed_credentials_provider:crates/paddleboard_credentials_provider"
+    "crates/zed_env_vars:crates/paddleboard_env_vars"
+)
+
+# script/check-zombie-upstream-files — directories I deleted.
+# Anything tracked under these arrived from upstream and should not be here.
+DELETED_DIRS=(
+    "crates/call"
+    "crates/collab"
+    "crates/collab_ui"
+    "crates/livekit_api"
+    "crates/livekit_client"
+)
+```
+
+Nine entries across two arrays. The rest of each script is diffing and reporting. What
+makes this work isn't the code — it's the claim that those two lists together account
+for every upstream directory the fork doesn't have.
+
 I only understood the second guard was necessary *because* I'd built the first one and
 noticed it couldn't see in that direction.
 
