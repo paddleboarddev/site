@@ -2,6 +2,20 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-08-11
+
+### The first post is live — and it revealed that syntax highlighting never worked here
+
+- **Published the fork-hygiene engineering post** (#30) at `/blog/worst-bugs-in-a-fork/`, the beta campaign's T-2wk piece. The blog section built on 2026-08-06 had rendered nothing but its empty state until now. 1,725 words, 9 sections; dated the day it merged, per the `--buildFuture` trap.
+- **Three mechanical edits during extraction:** dropped the H2 title (`single.html` renders `.Title`, so keeping it printed the headline twice), excluded the draft preamble and the internal notes section, trimmed a trailing horizontal rule.
+- **Added a code excerpt** (#31) — the whole configuration both guards need, `RENAME_MAP` and `DELETED_DIRS`, placed against the paragraph that claims those two lists partition the space. **Diffed verbatim against `script/` before committing**, because the post's whole credibility rests on being checkable and a drifted excerpt would undercut it.
+- ⚠️ **The excerpt exposed that Chroma highlighting had never actually run on this site.** Hugo defaults `markup.highlight.noClasses` to **true**, so code blocks carried inline **Monokai** (`#272822` on `#f8f8f2`) — a brown-black box in a blue site, exactly the foreign-element problem the section was built to avoid. Meanwhile `main.css` already had `.post-body .k` / `.c1` / `.s2` rules mapping tokens onto the editor's colours, **dead since the section shipped** because no post had a code block to reveal them. `noClasses = false` activates them.
+- **Also mapped `.nv`** (shell variable names), which was missing — without it the array names the excerpt is *about* rendered as plain body text while their comments and strings were coloured.
+- ✅ **Verified live, not locally:** background `#1e1e2e`, comments `#6c7086`, strings `#a6e3a1`, variables `#89b4fa`; the block scrolls inside itself at 1280px and 375px, and the page scrolls horizontally at neither.
+- ⚠️ **Polling "the latest run" right after a merge races the workflow's creation.** A deploy check reported success for the *previous* run because #31's had not been created yet, and the verification off the back of it tested the old page. Caught because `<pre>` count was 0 while the arrays looked present. **Poll by run ID, or match the run to the merge commit.**
+- ⚠️ **A layout measurement taken while the browser pane was collapsed reported `pageOverflow: true` with `clientWidth: 0`.** Re-measured with a real viewport rather than acting on it — there is no overflow. A zero-width viewport invalidates every layout number, not just that one.
+- **Both commits are unsigned** — gpg-agent was not cached, per the standing decision not to rewrite merged history to re-sign.
+
 ## 2026-08-08
 
 ### Verified the blog section against the live site, and fixed the share card it left behind
