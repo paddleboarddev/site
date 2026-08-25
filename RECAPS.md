@@ -2,6 +2,29 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-08-24
+
+### models card re-shot — the old asset contradicted its own caption
+
+- Replaced `static/img/models.png` on branch `models-card-refresh` (**uncommitted**).
+  1600x1004 as before, downscaled from a 3022x1896 2x capture; 258KB → 156KB.
+- ⚠️ **The July asset undercut the caption it sits under.** Captioned *"Every provider
+  in one list — including Local Models"*, it showed the model **picker** with
+  **Google AI marked `default`** and **Local Models marked ✗ (unconfigured)** — a cloud
+  provider as the default, on the card arguing local is first-class. The new shot is
+  the **LLM Providers settings page** with Local Models ✓ and no cloud default.
+- **Zed now sorts last** in that list (PaddleBoard PR pending on the app side), so the
+  card no longer opens on upstream's name.
+- **Stays a still, deliberately.** Zoomed, all nineteen providers fit one screen — there
+  is nothing to scroll — and expanding Local Models reveals the bring-your-own llama.cpp
+  section with an empty `sk-...` **API key field**, which contradicts the local-models
+  message. Five video takes established this before the still was chosen.
+- No window chrome (traffic lights) because the panel is zoomed. Consistent with
+  `dock.png`, which is a bare modal; `hero.png` keeps its chrome. The set already mixes.
+- ⏸️ **Follow-ups:** `persona` / `dock` / `setsail` / `sandbox` clips unshot — those four
+  have real interactions and stay motion. The `<img>` → `<video>` swap at
+  `layouts/index.html:34` still waits on the first real clip. Nothing committed yet.
+
 ## 2026-08-11
 
 ### The first post is live — and it revealed that syntax highlighting never worked here
