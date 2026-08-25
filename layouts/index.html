@@ -31,7 +31,23 @@
       <p>{{ $s.body | safeHTML }}</p>
     </div>
     <figure class="shot">
+      {{- with $s.video }}
+      {{/* autoplay only fires when muted; playsinline stops iOS going fullscreen.
+           The still is a reduced-motion fallback swapped in by CSS — this site
+           carries no JS, and a looping clip is what that setting exists for. */}}
+      <video class="shot-video" poster="{{ $s.poster | relURL }}"
+             autoplay muted loop playsinline preload="metadata"
+             aria-label="{{ $s.caption }}">
+        {{- with $s.videoWebm }}
+        <source src="{{ . | relURL }}" type="video/webm">
+        {{- end }}
+        <source src="{{ . | relURL }}" type="video/mp4">
+      </video>
+      <img class="shot-still" src="{{ $s.poster | relURL }}" alt="{{ $s.caption }}"
+           loading="lazy" decoding="async">
+      {{- else }}
       <img src="{{ $s.image | relURL }}" alt="{{ $s.caption }}" loading="lazy" decoding="async">
+      {{- end }}
       <figcaption>fig. {{ add $i 1 }} &nbsp;·&nbsp; {{ $s.caption }}</figcaption>
     </figure>
   </section>

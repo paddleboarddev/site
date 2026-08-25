@@ -4,6 +4,66 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-08-24
 
+### setsail card — the modal, without ever pressing deploy
+
+- **`static/video/setsail.{mp4,webm}` + poster**, wired into the `set sail` section.
+  7.37s at `SPEED=2.0`; loop seam measured at 0.0004 average luma.
+- **Shows both halves of the caption without side effects**: the `Quick deploy` /
+  `Rig the pipeline` toggle and the 2x3 platform grid (Cloud Run, AWS Lambda, Vercel,
+  Azure, Cloudflare, Netlify). The clip clicks platforms and modes, returns to the
+  opening state, and **never presses confirm** — that fetches SKILL.md files into the
+  project and seeds an agent thread, and on the Cloud Run path leads to billable
+  resources. Everything the caption claims is visible before that button.
+- ⚠️ **This card is squarer than its neighbours** — the modal is 1084x918 (1.18) where
+  the other clips are ~1.56 — so it renders taller in the two-column layout. Cropping
+  wider was tried and rejected: the backdrop is the onboarding page, and a margin crop
+  put chopped half-words along both edges, which reads as a mistake.
+- Requested 15.8s of source but the take yielded 14.7s, so the clip is 7.37s not 7.9s.
+  Harmless here — the end state still matches the start — but another reminder that the
+  encoder's output length is not the number you asked for.
+
+### dock card — the agents list, scrolled and looped
+
+- **`static/video/dock.{mp4,webm}` + poster**, wired into the `dock` section. 7.07s:
+  the Agents list from Claude / Codex / Copilot / Cursor / Antigravity down through
+  ADK / LangGraph / CrewAI / AutoGen / A2A, and back to the top.
+- **Verified the loop numerically** rather than by eye — first frame against last
+  differs by 0.00017 average luma, so the seam is invisible.
+- **Shot the agents list rather than the tab sweep the plan called for.** Two of the
+  five tabs are unshootable on a real machine: **MCP Servers** shows personal servers
+  (and had a live `Context server request timeout`), **Usage** shows real token counts.
+  The caption is about Agents anyway, and eleven agents overflow the modal, so the
+  scroll is honest motion.
+- **New `SPEED=` in `encode-clips.sh`.** The round trip ran 12s — too long for a card,
+  and cutting half of it would have broken the loop. 1.7x keeps both ends.
+- ⚠️ **`-t` caps the duration AFTER the speed filter**, so a raw `-t 12` returned 9.57s
+  of a differently-framed window. The script now divides by `SPEED`, keeping the
+  caller's duration meaning "seconds of the source take" either way. Second time in one
+  session that trimming silently produced the wrong length — check durations, always.
+
+### Feature cards can carry video — persona is the first
+
+- **`layouts/index.html` renders `<video>` when a section defines `video`**, and falls
+  back to `<img>` otherwise, so the five un-shot cards are untouched. webm `<source>`
+  first, mp4 second; `autoplay muted loop playsinline preload="metadata"`.
+- **Reduced motion is handled without JS.** Each motion card also emits its poster as
+  `.shot-still`, hidden by default and swapped for the clip under
+  `prefers-reduced-motion: reduce`. A card that loops forever is exactly what that
+  preference is for, and this site carries no JS beyond JSON-LD.
+- **New assets:** `static/video/persona.{mp4,webm}` (82KB / 124KB) and
+  `static/img/persona-poster.jpg`. 6.5s, cropped to the AI Dock modal so the persona
+  rows stay legible at card width (~590px on a desktop layout).
+- The clip shows the QA Engineer row flipping from "Add to project" to
+  "Installed (Project)" — a starter persona adopted in one click, which is the half of
+  the caption a still could never carry.
+- ⚠️ **`-ss`/`-t` before `-i` silently mis-cuts these takes.** `screencapture` writes
+  variable-frame-rate movies, so fast input seeking lands on the nearest keyframe: a
+  6.5s cut came out 7.5s in both encodes. `encode-clips.sh` now seeks after the input.
+  Verify the duration of anything it produces rather than trusting the arguments.
+- ⏸️ **Unverified:** autoplay and looping in a real browser. The markup, CSS, decode
+  and durations all check out, but the pane used for verification reported a 0x0
+  viewport, which cannot autoplay. Eyeball before merging.
+
 ### models card re-shot — the old asset contradicted its own caption
 
 - Replaced `static/img/models.png` on branch `models-card-refresh` (**uncommitted**).
