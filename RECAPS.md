@@ -4,6 +4,25 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-08-24
 
+### dock card — the agents list, scrolled and looped
+
+- **`static/video/dock.{mp4,webm}` + poster**, wired into the `dock` section. 7.07s:
+  the Agents list from Claude / Codex / Copilot / Cursor / Antigravity down through
+  ADK / LangGraph / CrewAI / AutoGen / A2A, and back to the top.
+- **Verified the loop numerically** rather than by eye — first frame against last
+  differs by 0.00017 average luma, so the seam is invisible.
+- **Shot the agents list rather than the tab sweep the plan called for.** Two of the
+  five tabs are unshootable on a real machine: **MCP Servers** shows personal servers
+  (and had a live `Context server request timeout`), **Usage** shows real token counts.
+  The caption is about Agents anyway, and eleven agents overflow the modal, so the
+  scroll is honest motion.
+- **New `SPEED=` in `encode-clips.sh`.** The round trip ran 12s — too long for a card,
+  and cutting half of it would have broken the loop. 1.7x keeps both ends.
+- ⚠️ **`-t` caps the duration AFTER the speed filter**, so a raw `-t 12` returned 9.57s
+  of a differently-framed window. The script now divides by `SPEED`, keeping the
+  caller's duration meaning "seconds of the source take" either way. Second time in one
+  session that trimming silently produced the wrong length — check durations, always.
+
 ### Feature cards can carry video — persona is the first
 
 - **`layouts/index.html` renders `<video>` when a section defines `video`**, and falls

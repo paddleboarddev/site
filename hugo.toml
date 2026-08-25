@@ -66,6 +66,9 @@ disableKinds = ["taxonomy", "term"]
     title = "Every agent surface in one place"
     body = "Agents, skills, MCP servers, personas, and token usage — the AI Dock is the one window where you install, configure, and watch all of it. No scattered config files."
     image = "img/dock.png"
+    video = "video/dock.mp4"
+    videoWebm = "video/dock.webm"
+    poster = "img/dock-poster.jpg"
     caption = "AI Dock — Agents: Claude, Codex, Copilot, Cursor, Antigravity"
 
   # Copy deliberately narrow: the built-in tier covers one-shot commands only.
