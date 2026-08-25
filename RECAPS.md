@@ -4,6 +4,29 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-08-24
 
+### Feature cards can carry video — persona is the first
+
+- **`layouts/index.html` renders `<video>` when a section defines `video`**, and falls
+  back to `<img>` otherwise, so the five un-shot cards are untouched. webm `<source>`
+  first, mp4 second; `autoplay muted loop playsinline preload="metadata"`.
+- **Reduced motion is handled without JS.** Each motion card also emits its poster as
+  `.shot-still`, hidden by default and swapped for the clip under
+  `prefers-reduced-motion: reduce`. A card that loops forever is exactly what that
+  preference is for, and this site carries no JS beyond JSON-LD.
+- **New assets:** `static/video/persona.{mp4,webm}` (82KB / 124KB) and
+  `static/img/persona-poster.jpg`. 6.5s, cropped to the AI Dock modal so the persona
+  rows stay legible at card width (~590px on a desktop layout).
+- The clip shows the QA Engineer row flipping from "Add to project" to
+  "Installed (Project)" — a starter persona adopted in one click, which is the half of
+  the caption a still could never carry.
+- ⚠️ **`-ss`/`-t` before `-i` silently mis-cuts these takes.** `screencapture` writes
+  variable-frame-rate movies, so fast input seeking lands on the nearest keyframe: a
+  6.5s cut came out 7.5s in both encodes. `encode-clips.sh` now seeks after the input.
+  Verify the duration of anything it produces rather than trusting the arguments.
+- ⏸️ **Unverified:** autoplay and looping in a real browser. The markup, CSS, decode
+  and durations all check out, but the pane used for verification reported a 0x0
+  viewport, which cannot autoplay. Eyeball before merging.
+
 ### models card re-shot — the old asset contradicted its own caption
 
 - Replaced `static/img/models.png` on branch `models-card-refresh` (**uncommitted**).

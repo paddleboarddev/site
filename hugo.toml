@@ -44,6 +44,12 @@ disableKinds = ["taxonomy", "term"]
     title = "Tell your agent who to be"
     body = "A <code>PERSONA.md</code> in your repo sets the voice, the constraints, and the house style — for the built-in agent, for subagents, and for Scion. Compose them with <code>extends:</code>. No prompt copy-paste between projects."
     image = "img/persona.png"
+    # A card with `video` renders <video>; `image` stays as the pre-clip asset and
+    # `poster` doubles as the reduced-motion still. Cards without `video` are
+    # unaffected.
+    video = "video/persona.mp4"
+    videoWebm = "video/persona.webm"
+    poster = "img/persona-poster.jpg"
     caption = "AI Dock — Personas: discovered from the repo, plus a starter library"
 
   [[params.sections]]

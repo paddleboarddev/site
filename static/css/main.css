@@ -236,13 +236,22 @@ main { position: relative; }
 /* the add-on section is deliberately quieter than the built-in features */
 .feat.addon { border-top-style: dashed; }
 .shot { margin: 0; }
-.shot img {
+.shot img,
+.shot video {
   width: 100%;
   height: auto;
   display: block;
   border: 1px solid var(--border);
   border-radius: 5px;
   background: var(--editor);
+}
+/* Motion cards ship both a clip and its poster as a still. The still is the
+   fallback for anyone who has asked the OS for less motion — a card that loops
+   forever is precisely what that preference is about. No JS, so CSS swaps them. */
+.shot .shot-still { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .shot .shot-video { display: none; }
+  .shot .shot-still { display: block; }
 }
 .shot figcaption {
   font-family: "Lilex";
