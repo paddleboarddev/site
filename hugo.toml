@@ -88,6 +88,9 @@ disableKinds = ["taxonomy", "term"]
     title = "Ship it from the editor"
     body = "Set Sail deploys to six serverless platforms using open skill packs from s8sskills.com, with a status-bar indicator that tells you where the build is."
     image = "img/setsail.png"
+    video = "video/setsail.mp4"
+    videoWebm = "video/setsail.webm"
+    poster = "img/setsail-poster.jpg"
     caption = "Set Sail — six platforms, quick deploy or a full pipeline"
 
   # Last, and deliberately quieter: Scion is opt-in and self-installed, so it

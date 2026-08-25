@@ -4,6 +4,24 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-08-24
 
+### setsail card — the modal, without ever pressing deploy
+
+- **`static/video/setsail.{mp4,webm}` + poster**, wired into the `set sail` section.
+  7.37s at `SPEED=2.0`; loop seam measured at 0.0004 average luma.
+- **Shows both halves of the caption without side effects**: the `Quick deploy` /
+  `Rig the pipeline` toggle and the 2x3 platform grid (Cloud Run, AWS Lambda, Vercel,
+  Azure, Cloudflare, Netlify). The clip clicks platforms and modes, returns to the
+  opening state, and **never presses confirm** — that fetches SKILL.md files into the
+  project and seeds an agent thread, and on the Cloud Run path leads to billable
+  resources. Everything the caption claims is visible before that button.
+- ⚠️ **This card is squarer than its neighbours** — the modal is 1084x918 (1.18) where
+  the other clips are ~1.56 — so it renders taller in the two-column layout. Cropping
+  wider was tried and rejected: the backdrop is the onboarding page, and a margin crop
+  put chopped half-words along both edges, which reads as a mistake.
+- Requested 15.8s of source but the take yielded 14.7s, so the clip is 7.37s not 7.9s.
+  Harmless here — the end state still matches the start — but another reminder that the
+  encoder's output length is not the number you asked for.
+
 ### dock card — the agents list, scrolled and looped
 
 - **`static/video/dock.{mp4,webm}` + poster**, wired into the `dock` section. 7.07s:
