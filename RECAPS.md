@@ -14,11 +14,23 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 - **Em dash rather than the hyphen as typed.** That legal line already separates with
   ` · `, and a hyphen between a name and an epithet reads as a compound surname. Trivial
   to change back if the hyphen is deliberate.
-- ⏸️ **Noticed, not done: the home page's JSON-LD has no `author` field at all.** It
-  describes a `SoftwareApplication` with no person attached, which is the machine-readable
-  half of exactly this change — what search and answer engines read for authorship. Adding
-  a `Person` with `name`, `jobTitle` and `url` would serve the branding goal further, but
-  it is a schema change with SEO reach, so it is proposed rather than assumed.
+### JSON-LD gains an author
+
+- The home page's structured data described a `SoftwareApplication` with **no person
+  attached**. It now carries an `author` `Person`: name, `alternateName` "The Cloud
+  Alchemist", `url`, and `sameAs`. That is the machine-readable half of the footer byline
+  — what search and answer engines read for authorship attribution.
+- ⚠️ **Caught two errors in my own first version before committing:**
+  - `sameAs` initially reused `.Site.Params.bluesky`, which is **@paddleboard.dev — the
+    product's account, not Jason's**. Asserting a person "is also" a product account is
+    exactly the wrong signal for entity resolution, and would have actively worked against
+    the branding goal. Removed; only the GitHub profile remains.
+  - Dropped `jobTitle`. "The Cloud Alchemist" is an epithet, not an employment title;
+    `alternateName` is the accurate field. `jobTitle` is a claim schema.org readers may
+    surface as fact.
+- ⏸️ **Two easy additions once the URLs are known:** a personal Bluesky/LinkedIn in
+  `sameAs`, and an `author` on blog posts — the JSON-LD block is `{{ if .IsHome }}`, so
+  articles currently carry none.
 
 ## 2026-08-24
 

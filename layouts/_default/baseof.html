@@ -54,10 +54,21 @@
   {{- end }}
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
   {{- if .IsHome }}
+  {{/* `author` is the machine-readable half of the footer byline: without it this
+       describes a SoftwareApplication with nobody attached, and search and answer
+       engines have no person to attribute the work to. `sameAs` is what lets them
+       resolve the three profiles to one entity rather than three strangers who
+       share a name. */}}
   {{- $ld := dict
     "@context" "https://schema.org"
     "@type" "SoftwareApplication"
     "name" .Site.Title
+    "author" (dict
+      "@type" "Person"
+      "name" "Jason (Jay) Smith"
+      "alternateName" "The Cloud Alchemist"
+      "url" "https://jasonsmith.io"
+      "sameAs" (slice "https://github.com/jasonsmithio"))
     "applicationCategory" "DeveloperApplication"
     "applicationSubCategory" "Integrated Development Environment"
     "operatingSystem" "macOS, Linux, Windows"
