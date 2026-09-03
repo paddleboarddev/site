@@ -4,6 +4,18 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-09-03
 
+### Launch moved to 23 September — /beta corrected
+
+- Jay moved the v0.3.0 launch from **Wed 9 Sept to Wed 23 Sept** (2026-09-03) for two
+  more weeks of polish. `/beta`'s eyebrow updated from 9 to 23 September.
+- ⚠️ **The wrong date was live for about 25 minutes.** `/beta` shipped this morning
+  saying 9 September; the move landed the same afternoon. Low blast radius — nothing
+  links to it publicly yet — but it is the argument for **not** hardcoding the launch
+  date in more places than necessary.
+- `cache-control: max-age=600` on that page, so the edge holds a stale copy for up to
+  10 minutes after deploy. Verify externally rather than assuming.
+
+
 ### Footer byline carries the personal brand
 
 - `layouts/_default/baseof.html` — "Made by Jason (Jay) Smith" becomes **"Made by Jason
