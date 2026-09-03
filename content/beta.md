@@ -1,7 +1,7 @@
 +++
 title = "PaddleBoard is in beta"
 description = "What beta means here, the bar we hold ourselves to, and what we already know is rough."
-eyebrow = "Version 0.3.0 · 9 September 2026"
+eyebrow = "Version 0.3.0 · 23 September 2026"
 layout = "beta"
 date = 2026-09-02
 +++
