@@ -2,6 +2,24 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-09-03
+
+### Footer byline carries the personal brand
+
+- `layouts/_default/baseof.html` — "Made by Jason (Jay) Smith" becomes **"Made by Jason
+  (Jay) Smith — The Cloud Alchemist"**, part of a wider personal-branding goal. It sits in
+  `baseof.html`, so it renders on every page including `/beta`.
+- **The epithet is inside the link**, not trailing it — the whole phrase is the identity,
+  so the whole phrase points at jasonsmith.io.
+- **Em dash rather than the hyphen as typed.** That legal line already separates with
+  ` · `, and a hyphen between a name and an epithet reads as a compound surname. Trivial
+  to change back if the hyphen is deliberate.
+- ⏸️ **Noticed, not done: the home page's JSON-LD has no `author` field at all.** It
+  describes a `SoftwareApplication` with no person attached, which is the machine-readable
+  half of exactly this change — what search and answer engines read for authorship. Adding
+  a `Person` with `name`, `jobTitle` and `url` would serve the branding goal further, but
+  it is a schema change with SEO reach, so it is proposed rather than assumed.
+
 ## 2026-08-24
 
 ### setsail card — the modal, without ever pressing deploy
