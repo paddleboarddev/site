@@ -111,6 +111,9 @@
           <h4>Project</h4>
           <a href="{{ .Site.Params.repo }}">GitHub</a>
           <a href="{{ "/blog/" | relURL }}">Blog</a>
+          {{/* Footer, not the top nav: main.css warns that a fifth nav link degrades
+               the strip to scrolling, which can push Download off a phone. */}}
+          <a href="{{ "/beta/" | relURL }}">Beta status</a>
           <a href="{{ .Site.Params.docs }}">Docs</a>
           <a href="{{ .Site.Params.repo }}/releases">Releases</a>
           <a href="{{ .Site.Params.repo }}/blob/main/CREDITS.md">Credits</a>

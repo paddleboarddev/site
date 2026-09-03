@@ -2,6 +2,35 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-09-02
+
+### Beta promises page — live at /beta, one week before launch
+
+- **`content/beta.md` + `layouts/_default/beta.html`**, from the 2026-08-11 draft. This
+  was a **blocking dependency**: the v0.3.0 release notes, the README and the Show HN
+  first comment all link to it, and the plan requires it up *before* launch morning.
+- **Its own layout, not `single.html`.** The post template stamps a date, a reading time
+  and an "All posts" link — right for an article, wrong for a standing statement. A
+  visible date invites "is this still true?", the one doubt this page exists to remove.
+  The gutter rail stays, since that is what makes the page look like the product.
+- ⚠️ **The draft still said "released 26 August 2026"** — the pre-move launch date.
+  Corrected to 9 September in the front-matter eyebrow. Anything else drafted before
+  2026-08-14 may carry the same stale date.
+- **Linked from the footer's Project column, not the top nav.** `main.css` warns that a
+  fifth nav link degrades the strip to scrolling, which can push **Download** off a
+  phone — the same reason Blog lives there.
+- **Known-issues list swept before publishing**, as the draft demands (it went stale
+  once, two of five rough edges fixed two days after drafting). All three still hold:
+  unlabelled status-bar icons, 5 catalog MCP servers sharing one generic icon, and the
+  keymap selector showing "Zed" — each re-verified against the code today.
+- ⏸️ **Open question left for Jay, deliberately not decided:** whether to list
+  jasonsmithio/paddleboard#200 (the AI Dock intermittently not opening from the command
+  palette). It is unresolved and affects a headline feature, and the page's ethos is
+  "we'd rather you read this than discover it" — but it is his call, so it is not in
+  the diff.
+- ⚠️ **Deploy is not done until the Firebase edge cache is purged** and the page is
+  verified from an external vantage.
+
 ## 2026-08-24
 
 ### setsail card — the modal, without ever pressing deploy

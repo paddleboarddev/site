@@ -1,0 +1,26 @@
+{{ define "main" }}
+{{/* The promises page borrows the post shell but not its furniture. `single.html`
+     stamps a date, a reading time and an "All posts" link — right for an article,
+     wrong here: this page is a standing statement, not something published once.
+     A visible date in particular invites "is this still true?", which is the one
+     doubt this page exists to remove. The rail stays; it is what makes the page
+     look like the product rather than like a policy notice. */}}
+<div class="rail" aria-hidden="true">{{ range seq 420 }}<span>{{ . }}</span>{{ end }}</div>
+
+<article class="post inner">
+  <header class="post-head">
+    <p class="eyebrow">{{ with .Params.eyebrow }}{{ . }}{{ end }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="post-lede">{{ . }}</p>{{ end }}
+  </header>
+
+  <div class="post-body">
+    {{ .Content }}
+  </div>
+
+  <footer class="post-foot">
+    <a class="btn btn-ghost" href="{{ .Site.Params.repo }}/discussions">Report something</a>
+    <a class="btn btn-primary" href="{{ .Site.Params.repo }}/releases/latest">Download PaddleBoard</a>
+  </footer>
+</article>
+{{ end }}
