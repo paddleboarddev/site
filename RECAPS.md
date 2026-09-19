@@ -2,6 +2,16 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-09-18
+
+### Beta launch date moved to 7 October 2026
+
+- `/beta`'s eyebrow now reads **Version 0.3.0 · 7 October 2026**, replacing 23 September. It's the only
+  public place the launch date appears on the site.
+- Go-live was pushed on 2026-09-18. Jay asked for Fri 9 Oct and confirmed the nearest Wednesday,
+  keeping the launch plan's Wednesday timing (HN morning, weekday Reddit follow-ups).
+- The page's own `date = 2026-09-02` front matter is its publish date and was deliberately left alone.
+
 ## 2026-09-03
 
 ### Launch moved to 23 September — /beta corrected
