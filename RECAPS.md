@@ -22,8 +22,10 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 - **Removing it is deleting one line.** The strip renders only while `params.beta.date`
   is set; on launch day delete `date` and the strip is gone and the `/beta` eyebrow shows
   the version alone. No template edit needed.
-- Verified locally at desktop and 375px widths. The page's own `date = 2026-09-02` front
-  matter is still its publish date and was left alone.
+- Verified locally at desktop and 375px widths, then live: [#40](https://github.com/paddleboarddev/site/pull/40)
+  merged 2026-10-03 at 12:32 PT, the Pages deploy went green, and an external fetch of both `/`
+  and `/beta` showed the new date within three minutes. The page's own `date = 2026-09-02`
+  front matter is still its publish date and was left alone.
 
 ## 2026-09-18
 
