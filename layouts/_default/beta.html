@@ -9,7 +9,12 @@
 
 <article class="post inner">
   <header class="post-head">
-    <p class="eyebrow">{{ with .Params.eyebrow }}{{ . }}{{ end }}</p>
+    {{/* Version and date come from [params.beta] in hugo.toml, never from this
+         page's front matter: the date moved four times and was once live wrong
+         for 25 minutes because it was typed here. Drop `date` from the config
+         on launch day and only the version remains. */}}
+    {{- $b := .Site.Params.beta }}
+    <p class="eyebrow">Version {{ strings.TrimPrefix "v" $b.version }}{{ with $b.date }} · {{ . }}{{ end }}</p>
     <h1>{{ .Title }}</h1>
     {{ with .Description }}<p class="post-lede">{{ . }}</p>{{ end }}
   </header>

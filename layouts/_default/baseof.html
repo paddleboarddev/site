@@ -104,6 +104,21 @@
     </div>
   </header>
 
+  {{/* Coming-soon strip: rendered on every page while [params.beta].date is set,
+       gone the day it is deleted. Below the sticky nav rather than inside it,
+       so it scrolls away instead of permanently taxing a phone's height. The
+       date is read from config — see the comment there about why it lives
+       nowhere else. */}}
+  {{- with .Site.Params.beta }}{{ with .date }}
+  <aside class="announce">
+    <a href="{{ "/beta/" | relURL }}">
+      <span class="announce-tag">coming soon</span>
+      <span class="announce-text">{{ $.Site.Params.beta.version }} Beta lands <time datetime="{{ $.Site.Params.beta.iso }}">{{ . }}</time></span>
+      <span class="announce-more">what beta means →</span>
+    </a>
+  </aside>
+  {{- end }}{{ end }}
+
   <main>
     {{ block "main" . }}{{ end }}
   </main>
