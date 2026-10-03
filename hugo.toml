@@ -35,6 +35,18 @@ disableKinds = ["taxonomy", "term"]
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
   version = "v0.2.8"
 
+  # The upcoming beta. `date` is the one place the launch date lives: it drives
+  # the coming-soon strip under the nav (baseof.html) and /beta's eyebrow
+  # (beta.html). The date has moved four times (26 Aug → 9 Sept → 23 Sept →
+  # 7 Oct → 14 Oct), and on 2026-09-03 the wrong one was live for 25 minutes
+  # because it was hardcoded in a page — so do not copy it anywhere else.
+  # `iso` feeds <time datetime>. Delete `date` on launch day and the strip
+  # disappears; the eyebrow then shows the version alone.
+  [params.beta]
+    version = "v0.3.0"
+    date = "Wednesday 14 October 2026"
+    iso = "2026-10-14"
+
   # The narrative sections of the home page, in order. `token` picks the syntax
   # colour of the label, matching PaddleBoard Dark's own theme values. Each one
   # is anchored to a real product screenshot in static/img/.

@@ -2,6 +2,29 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-10-03
+
+### Beta launch moved to 14 October 2026, and a coming-soon strip on every page
+
+- Jay pushed the v0.3.0 launch out one week on 2026-10-03, from **Wed 7 Oct to Wed 14 Oct**.
+  Still a Wednesday, so the launch plan's timing logic holds unchanged.
+- **The date now lives in exactly one place:** `[params.beta]` in `hugo.toml` (`version`,
+  `date`, `iso`). `/beta`'s eyebrow is built from it in `beta.html` instead of being typed
+  into `content/beta.md`'s front matter. This is the fix the 2026-09-03 entry argued for
+  after the wrong date was live for 25 minutes; the date has now moved four times, and
+  each move was a hand edit of a page.
+- **New: a coming-soon strip under the nav**, on every page, reading
+  *// coming soon · v0.3.0 Beta lands Wednesday 14 October 2026 · what beta means →*, the
+  whole line linking to `/beta`. Styled as an editor notification line rather than a
+  marketing banner: Lilex, the status-bar palette, a hairline below. It sits *below* the
+  sticky nav so it scrolls away instead of permanently taxing a phone's height. On a
+  phone it wraps to two lines and the link words fold into an arrow.
+- **Removing it is deleting one line.** The strip renders only while `params.beta.date`
+  is set; on launch day delete `date` and the strip is gone and the `/beta` eyebrow shows
+  the version alone. No template edit needed.
+- Verified locally at desktop and 375px widths. The page's own `date = 2026-09-02` front
+  matter is still its publish date and was left alone.
+
 ## 2026-09-18
 
 ### Beta launch date moved to 7 October 2026

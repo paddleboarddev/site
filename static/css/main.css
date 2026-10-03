@@ -111,6 +111,33 @@ code {
 .nav-links a:hover { color: var(--text); }
 .nav-links .btn { margin-left: auto; border-right: 0; }
 
+/* ---------- coming-soon strip: a one-line editor notification ----------
+ * Styled like the status bar, not like a marketing banner: Lilex, the comment
+ * colour, a hairline below. The tag takes the string green so it reads as the
+ * one live token on the line. Exists only while [params.beta].date is set.
+ */
+.announce {
+  border-bottom: 1px solid var(--border);
+  background: var(--editor);
+  font-family: "Lilex";
+  font-size: 12.5px;
+}
+.announce a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 8px 14px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.announce a:hover .announce-text { color: var(--text); }
+.announce-tag { color: var(--str); }
+.announce-tag::before { content: "// "; color: var(--com); }
+.announce-text time { color: var(--text); font-weight: 700; }
+.announce-more { color: var(--fn); margin-left: auto; }
+.announce a:hover .announce-more { text-decoration: underline; }
+
 /* ---------- buttons: squared, not pills ---------- */
 .btn {
   font-family: "Lilex";
@@ -549,4 +576,11 @@ main { position: relative; }
   .nav-links .nav-blog { display: none; }
   .nav-links .btn { margin-left: auto; }
   .nav-links .btn-sm { padding: 6px 11px; font-size: 12px; margin-right: 6px; }
+
+  /* Two lines on a phone, not three: the tag and the date each take one, and
+   * the "what beta means" words give way to an arrow on the date line. The
+   * whole strip is the link, so nothing is lost. */
+  .announce a { padding: 8px 11px; gap: 4px 10px; font-size: 12px; }
+  .announce-more { display: none; }
+  .announce-text::after { content: " →"; color: var(--fn); }
 }
