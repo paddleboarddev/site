@@ -15,6 +15,18 @@
     {{ with .Description }}<p class="post-lede">{{ . }}</p>{{ end }}
   </header>
 
+  {{- with .Params.image }}
+  {{/* Opt-in header art, generated in the site's own palette (static/img/blog/).
+       The WebP is a tenth the size of the PNG; the PNG stays for the link card. */}}
+  <figure class="post-hero">
+    <picture>
+      <source srcset="{{ replace . ".png" ".webp" | relURL }}" type="image/webp">
+      <img src="{{ . | relURL }}" width="1600" height="914"
+           alt="{{ default "" $.Params.imageAlt }}" decoding="async">
+    </picture>
+  </figure>
+  {{- end }}
+
   <div class="post-body">
     {{ .Content }}
   </div>
