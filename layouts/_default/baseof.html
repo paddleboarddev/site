@@ -29,11 +29,21 @@
        silently dropped by every one of them, which looks identical to having no
        card at all. Same 1280x640 asset as the GitHub repo social preview, built
        by script/build-social-preview in the app repo. */}}
+  {{/* A post may name its own header art in front matter (`image = "img/blog/<slug>.png"`,
+       1600×914); it then becomes that page's card too, so a shared post previews as itself
+       rather than as the product. Without one, every page keeps the shared card. The PNG
+       is what goes in the card: WebP is for the page, not for link scrapers. */}}
   {{- $ogImage := absURL "img/social-card.png" }}
+  {{- $ogW := "1280" }}{{- $ogH := "640" }}
+  {{- $ogAlt := "PaddleBoard — the open-source AI IDE you actually own" }}
+  {{- with .Params.image }}
+    {{- $ogImage = absURL . }}{{- $ogW = "1600" }}{{- $ogH = "914" }}
+    {{- $ogAlt = default $.Title $.Params.imageAlt }}
+  {{- end }}
   <meta property="og:image" content="{{ $ogImage }}">
-  <meta property="og:image:width" content="1280">
-  <meta property="og:image:height" content="640">
-  <meta property="og:image:alt" content="PaddleBoard — the open-source AI IDE you actually own">
+  <meta property="og:image:width" content="{{ $ogW }}">
+  <meta property="og:image:height" content="{{ $ogH }}">
+  <meta property="og:image:alt" content="{{ $ogAlt }}">
   {{/* summary_large_image, not summary: `summary` renders a small square thumbnail
        and crops a 2:1 card to nothing useful. */}}
   <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +53,7 @@
        product on a link someone shared to read the post. */}}
   <meta name="twitter:description" content="{{ $desc }}">
   <meta name="twitter:image" content="{{ $ogImage }}">
-  <meta name="twitter:image:alt" content="PaddleBoard — the open-source AI IDE you actually own">
+  <meta name="twitter:image:alt" content="{{ $ogAlt }}">
   <link rel="icon" type="image/svg+xml" href="{{ "paddleboard_logo.svg" | relURL }}">
   {{/* The two faces above the fold: headline (Lilex Bold) and body (Plex).
        Self-hosted from the app's own OFL fonts — see static/fonts. */}}

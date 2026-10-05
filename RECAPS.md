@@ -2,6 +2,29 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-10-05
+
+### Header art for the blog, and the hook that uses it
+
+- **Seven header images** in `static/img/blog/`, generated with Higgsfield (Recraft V4.1) in the
+  site's own palette on a `#181825` ground: one for the engineering post (`worst-bugs-in-a-fork`)
+  and one for each candidate in the Blog posts writing doc (what the beta is for, no analytics on
+  purpose, the local model as first-class path, keeping a fork alive part two, sandboxing the agent,
+  agent scaffolding). Flat, geometric, text-free, so they sit inside the editor look rather than on
+  top of it. PNG at 1600×914 for link cards (~1 MB each), WebP alongside for the page (20–40 KB).
+  The 2688×1536 originals are not in the repo.
+- **The hook is opt-in and changes nothing until a post uses it.** `image = "img/blog/<slug>.png"` in
+  a post's front matter makes that image the post's `og:image` (1600×914, with `imageAlt` as the
+  alt) and renders it as a `.post-hero` figure under the header, framed like body images and capped
+  at the body's measure. Without the field, every page keeps the shared social card, and the home
+  page is untouched. Verified by building with a throwaway post and checking both cases.
+- **Jay's standing note, recorded the same day:** he likes the site design and the logo as they
+  are. Generated art is additive only; nothing here restyles anything.
+- **Correction carried into the writing docs:** the engineering post is *not* live. It was
+  unpublished on 2026-08-11 for Jay's rewrite (`00f12aa`) and `/blog/worst-bugs-in-a-fork/`
+  returns 404. The checklist and launch-copy docs said otherwise and now say this; the draft is
+  in the writing folder as a reference doc.
+
 ## 2026-10-03
 
 ### Beta launch moved to 14 October 2026, and a coming-soon strip on every page

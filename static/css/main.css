@@ -425,6 +425,11 @@ main { position: relative; }
 }
 .post-lede { color: var(--muted); font-size: 18px; max-width: 68ch; margin: 0; }
 
+/* Header art, opt-in per post. Framed like body images so it reads as part of the
+   post, not as a banner; capped at the body's measure so it never outgrows the text. */
+.post-hero { margin: 0 0 34px; max-width: 68ch; line-height: 0; }
+.post-hero img { width: 100%; height: auto; border: 1px solid var(--border); border-radius: 6px; }
+
 .post-body { font-size: 16.5px; line-height: 1.72; }
 .post-body > * { max-width: 68ch; }
 .post-body p, .post-body li { color: var(--muted); }
