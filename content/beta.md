@@ -53,7 +53,13 @@ Current as of 0.3.0. We'd rather you read this than discover it.
 
 - macOS builds are **Apple Silicon only**. No Intel build.
 - Linux ships as an **x86_64 tarball** — no `.deb`, no `.rpm`, no AppImage yet.
-- **Windows builds from source.** There's no packaged Windows download.
+- **Windows is an unsigned preview.** A zip for x86_64, built in CI from the
+  same source as the macOS and Linux releases, but not code-signed. The first
+  run shows a SmartScreen warning: *More info*, then *Run anyway*. There is no
+  installer, no in-app update (download the next zip), and no managed Local
+  Models — bring your own API key or point PaddleBoard at a local
+  OpenAI-compatible endpoint. The window can't yet be dragged by its title
+  bar ([#87](https://github.com/paddleboarddev/paddleboard/issues/87)).
 - In-app updates work on macOS and Linux.
 
 **Rough edges we know about**
@@ -99,7 +105,7 @@ path is easy.
 
 Useful things to include: your OS and chip, the PaddleBoard version, which model
 provider you're on, and what you expected instead. Logs live in
-`~/Library/Logs/PaddleBoard/` on macOS.
+`~/Library/Logs/PaddleBoard/` on macOS and `%LOCALAPPDATA%\\PaddleBoard\\logs` on Windows.
 
 ## What happens after beta
 
