@@ -25,7 +25,8 @@ already know about and shipped anyway.
   reliability. Nothing PaddleBoard adds sits between you and your buffer.
 - **Nothing leaves your machine unless you point it somewhere.** Telemetry is
   disabled at the call site, not behind a setting. Local models run locally. The
-  RAG index is a SQLite file in your project. Usage tracking writes plain JSON to
+  RAG index is a local SQLite database in PaddleBoard's data directory. Usage
+  tracking writes plain JSON to
   your disk. The only outbound traffic is to the model provider you configured,
   the update check, and things you explicitly ask for — a deploy, a git push.
 - **Agents don't execute code on your host by default.** Tool calls that run code
@@ -79,8 +80,10 @@ Current as of 0.3.0. We'd rather you read this than discover it.
 - **Scion** parallel-agent support requires `go install` and an explicit
   `"paddleboard_scion": { "enabled": true }`. Installing the CLI alone doesn't
   activate it.
-- The **pgvector** RAG backend is a compile-time feature; the default build uses
-  the local SQLite store.
+- **Semantic search (RAG)** is off until you set
+  `"paddleboard_rag": { "enabled": true }`. It indexes into the local SQLite store
+  by default; official builds also include the **pgvector** backend, used only when
+  you set `"store_backend": "pgvector"`.
 
 **Caveats worth stating**
 
@@ -105,7 +108,7 @@ path is easy.
 
 Useful things to include: your OS and chip, the PaddleBoard version, which model
 provider you're on, and what you expected instead. Logs live in
-`~/Library/Logs/PaddleBoard/` on macOS and `%LOCALAPPDATA%\\PaddleBoard\\logs` on Windows.
+`~/Library/Logs/PaddleBoard/` on macOS and `%LOCALAPPDATA%\PaddleBoard\logs` on Windows.
 
 ## What happens after beta
 
