@@ -84,13 +84,13 @@ Current as of 0.3.0. We'd rather you read this than discover it.
   `"paddleboard_rag": { "enabled": true }`. It indexes into the local SQLite store
   by default; official builds also include the **pgvector** backend, used only when
   you set `"store_backend": "pgvector"`.
-- **Model tiers** are off until you set `"paddleboard_tiers"` with your tiers and a
+- **Spotter** is off until you set `"paddleboard_spotter"` with your tiers and a
   project check command. Escalating to a stronger tier asks first by default,
   because it is the moment work moves from a free local model to a paid one.
 
 **Caveats worth stating**
 
-- Model tiers are new in 0.3.0. The check runs in the agent's sandbox, which has
+- Spotter is new in 0.3.0. The check runs in the agent's sandbox, which has
   no network by default, so pick a check that works offline. Escalation is
   triggered only by a failed check, never by guessing how hard a task is.
 - Placid mode hides the docks and centers the editor, but not the tab bar,
