@@ -44,8 +44,8 @@ disableKinds = ["taxonomy", "term"]
   # disappears; the eyebrow then shows the version alone.
   [params.beta]
     version = "v0.3.0"
-    date = "Wednesday 21 October 2026"
-    iso = "2026-10-21"
+    date = "Monday 26 October 2026"
+    iso = "2026-10-26"
 
   # The narrative sections of the home page, in order. `token` picks the syntax
   # colour of the label, matching PaddleBoard Dark's own theme values. Each one
