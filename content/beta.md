@@ -99,6 +99,10 @@ Current as of 0.3.0. We'd rather you read this than discover it.
 - TLS against a remote pgvector instance is untested. 🔍
 - Set Sail hands interactive auth to your terminal rather than running it. That's
   intentional, but it means a deploy isn't fully hands-off the first time.
+- Managed Local Models run with an 8K context window. Long agent threads fill it
+  quickly, and automatic context compaction only runs on models with 80K or more,
+  so on the local model you'll be asked to start a new thread instead. Larger
+  context is on the list for after the beta.
 
 ## How to report something
 
@@ -114,7 +118,8 @@ path is easy.
 
 Useful things to include: your OS and chip, the PaddleBoard version, which model
 provider you're on, and what you expected instead. Logs live in
-`~/Library/Logs/PaddleBoard/` on macOS and `%LOCALAPPDATA%\PaddleBoard\logs` on Windows.
+`~/Library/Logs/PaddleBoard/` on macOS, `~/.local/share/paddleboard/logs` on Linux,
+and `%LOCALAPPDATA%\PaddleBoard\logs` on Windows.
 
 ## What happens after beta
 
