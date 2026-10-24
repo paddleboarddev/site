@@ -33,7 +33,7 @@ disableKinds = ["taxonomy", "term"]
   docs = "https://docs.paddleboard.dev"
   bluesky = "https://bsky.app/profile/paddleboard.dev"
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
-  version = "v0.2.8"
+  version = "v0.3.0"
 
   # The upcoming beta. `date` is the one place the launch date lives: it drives
   # the coming-soon strip under the nav (baseof.html) and /beta's eyebrow
