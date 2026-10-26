@@ -32,6 +32,7 @@ disableKinds = ["taxonomy", "term"]
   repo = "https://github.com/paddleboarddev/paddleboard"
   docs = "https://docs.paddleboard.dev"
   bluesky = "https://bsky.app/profile/paddleboard.dev"
+  reddit = "https://www.reddit.com/r/paddleboarddev/"
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
   version = "v0.3.0"
 
