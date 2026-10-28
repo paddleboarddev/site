@@ -63,6 +63,12 @@
   <link rel="alternate" type="application/rss+xml" title="{{ $.Site.Title }}" href="{{ .Permalink }}">
   {{- end }}
   <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  {{- $author := dict
+    "@type" "Person"
+    "name" "Jason (Jay) Smith"
+    "alternateName" "The Cloud Alchemist"
+    "url" "https://jasonsmith.io"
+    "sameAs" (slice "https://github.com/jasonsmithio") }}
   {{- if .IsHome }}
   {{/* `author` is the machine-readable half of the footer byline: without it this
        describes a SoftwareApplication with nobody attached, and search and answer
@@ -73,12 +79,7 @@
     "@context" "https://schema.org"
     "@type" "SoftwareApplication"
     "name" .Site.Title
-    "author" (dict
-      "@type" "Person"
-      "name" "Jason (Jay) Smith"
-      "alternateName" "The Cloud Alchemist"
-      "url" "https://jasonsmith.io"
-      "sameAs" (slice "https://github.com/jasonsmithio"))
+    "author" $author
     "applicationCategory" "DeveloperApplication"
     "applicationSubCategory" "Integrated Development Environment"
     "operatingSystem" "macOS, Linux, Windows"
@@ -90,6 +91,23 @@
     "isAccessibleForFree" true
     "keywords" .Site.Params.keywords
     "offers" (dict "@type" "Offer" "price" "0" "priceCurrency" "USD") }}
+  <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
+  {{- else if and .IsPage (eq .Section "blog") }}
+  {{/* Marks a post as an article, so search can show it with its date, author
+       and image. Same `$author` as the home page, so the post and the app
+       resolve to one person. */}}
+  {{- $ld := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "headline" .Title
+    "description" .Description
+    "datePublished" (.Date.Format "2006-01-02")
+    "dateModified" (.Lastmod.Format "2006-01-02")
+    "author" $author
+    "publisher" (dict "@type" "Organization" "name" .Site.Title "url" .Site.BaseURL)
+    "mainEntityOfPage" .Permalink
+    "url" .Permalink }}
+  {{- with .Params.image }}{{ $ld = merge $ld (dict "image" (absURL .)) }}{{ end }}
   <script type="application/ld+json">{{ $ld | jsonify | safeJS }}</script>
   {{- end }}
 </head>
