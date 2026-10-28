@@ -4,6 +4,27 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-10-28
 
+### SEO pass: article structured data and a launch-matched description (#53, #54)
+
+- **Audit of the live site came back mostly clean.** Every page has its own title, description,
+  canonical URL, one H1, and full Open Graph and Twitter tags. robots.txt and sitemap.xml are
+  right, the RSS feed is linked, `www` and `http` both 301 to the apex, and the home page has
+  `SoftwareApplication` structured data. The two logo `<img>`s have empty alt on purpose: the
+  brand text sits next to them.
+- **#53 (`49d183e`): blog posts get a `BlogPosting` block** (headline, dates, author, publisher,
+  image). The author is one shared `$author` dict in `baseof.html`, so the post and the home
+  page resolve to one person. The home page's JSON is unchanged. Checked live after the deploy.
+- **#54 (`38a3ee8`): `params.description` now matches the launch message.** It had led with
+  PERSONA.md and bring-your-own-keys and said telemetry was "off by default", which undersold a
+  hard-disable. Jay picked option A of three. C kept "coding-agent harness" for search, and B was
+  a feature list. One param feeds meta, OG, Twitter and the structured data. Checked live.
+- **Left alone:** the site-wide `keywords` meta (Google ignores it, and it does no harm), the
+  title and the tagline. Cards for links shared before #54 keep the old text, because each
+  network caches the card.
+- **Open, Jay's:** Search Console. No verification meta was found (it may be verified through
+  DNS). Submitting the sitemap there gets the post indexed sooner.
+- No CHANGELOG lines: nobody using the site would notice either change.
+
 ### Sandbox card corrected before the Show HN (#51)
 
 - **The card claimed the built-in tier needs "nothing to install". That was false.** v0.3.0 ships
