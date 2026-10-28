@@ -2,6 +2,34 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-10-27
+
+### The engineering post, back on the launch branch for 28 October
+
+- **`content/blog/worst-bugs-in-a-fork.md`** holds Jay's rewrite from the Google Doc, at the same
+  `/blog/worst-bugs-in-a-fork/` slug that the HN reply, the r/rust post and TWiR link to. It is dated
+  2026-10-28, because the deploy runs without `--buildFuture` and skips future-dated posts.
+- **Conversion was mechanical:**
+  - Section headings are `###` (`single.html` renders the title).
+  - Identifiers are set as inline code.
+  - The guard arrays are a `bash` block, diffed against `script/` and identical.
+  - The existing `worst-bugs-in-a-fork` header art is used via `image`/`imageAlt`.
+  - A word-level diff against the doc showed only list markers and the fence's language tag.
+- **Agent-written, flagged to Jay:** the front-matter `description` and the image's alt text.
+- A `hugo --gc --minify` build shows 11 section headings, one code block, the hero image,
+  `og:image` set, and the post listed on the blog index. ⚠️ **No visual check:** the browser pane
+  won't render a local build. It is the same template as the August post.
+
+### /beta: "Coming in 0.3.1" note on the launch branch
+
+- Added under "Known issues", right after "Current as of 0.3.0": the macOS window-button and tab-bar
+  fix, and one security line (rustls 0.23.46 and the removed emSign root). It goes live with the flip,
+  not before, as Jay chose.
+- **No date on purpose:** the page already says a 1.0 date "would be a guess", so the note says
+  "in 0.3.1", not "next week". The extension crash fix was left off as too narrow.
+- When 0.3.1 ships, change "Current as of 0.3.0" and remove the keymap and status-bar bullets if
+  #377 and #378 land (tracked in jasonsmithio/paddleboard#379).
+
 ## 2026-10-05
 
 ### Header art for the blog, and the hook that uses it

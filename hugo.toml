@@ -32,6 +32,7 @@ disableKinds = ["taxonomy", "term"]
   repo = "https://github.com/paddleboarddev/paddleboard"
   docs = "https://docs.paddleboard.dev"
   bluesky = "https://bsky.app/profile/paddleboard.dev"
+  reddit = "https://www.reddit.com/r/paddleboarddev/"
   # Latest published release. Bump on each release (the tag must exist at repo/releases/tag/<version>).
   version = "v0.3.0"
 
@@ -42,12 +43,11 @@ disableKinds = ["taxonomy", "term"]
   # release having shipped on 23 Oct), and on 2026-09-03 the wrong
   # one was live for 25 minutes because it was hardcoded in a page — so do not copy
   # it anywhere else.
-  # `iso` feeds <time datetime>. Delete `date` at the cut and the strip
-  # disappears; the eyebrow then shows the version alone.
+  # `iso` feeds <time datetime>. `date` was deleted on announcement morning, 28 Oct 2026,
+  # so the strip is gone and the eyebrow shows the version alone. To announce a
+  # future beta, add `date` and `iso` back here.
   [params.beta]
     version = "v0.3.0"
-    date = "Wednesday 28 October 2026"
-    iso = "2026-10-28"
 
   # The narrative sections of the home page, in order. `token` picks the syntax
   # colour of the label, matching PaddleBoard Dark's own theme values. Each one
