@@ -12,5 +12,8 @@ Why each change was made lives in [RECAPS.md](RECAPS.md).
 - A Reddit link (r/paddleboarddev) in the footer's Community column.
 - On the beta page: where logs live on Linux, and a caveat that long threads on the managed local model end sooner, because it runs with an 8K context.
 
+### Fixed
+- The sandbox card on the home page said the built-in tier needs nothing installed. It needs libkrun from Homebrew first, and only your project folder is shared with it.
+
 ### Removed
 - The "coming soon" date strip under the navigation. v0.3.0 is out, so the beta page now shows the version alone.
