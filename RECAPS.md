@@ -2,6 +2,20 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-10-28
+
+### Launch: site flipped for v0.3.0, and a changelog started
+
+- **#48 squash-merged at about 8:25am PDT** (`1ebfcc2`) on Jay's "flip the site", inside the
+  7–8am window he picked. The Pages build and deploy passed, and the live site was checked
+  afterwards: the post renders with its header art and is on /blog/, /beta/ has the 0.3.1 note,
+  the date strip is gone, and the Reddit link is in the footer.
+- **Posts are deliberately later.** Show HN, Bluesky/Mastodon and LinkedIn are Jay's to send
+  once the site is confirmed live. Jay's call: "the first thing is the site".
+- **`CHANGELOG.md` created at deploy time**, not before. The site ships through Pages, so an
+  entry written on the launch branch would have been false until the merge. It uses dated
+  headings because the site has no versions of its own; v0.3.0 belongs to the app.
+
 ## 2026-10-27
 
 ### The engineering post, back on the launch branch for 28 October
