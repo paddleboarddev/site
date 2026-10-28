@@ -4,6 +4,21 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-10-28
 
+### Sandbox card corrected before the Show HN (#51)
+
+- **The card claimed the built-in tier needs "nothing to install". That was false.** v0.3.0 ships
+  the krun helper but not the libkrun libraries, so a fresh Mac gets "libkrun is not installed".
+  Found while checking the Show HN copy against the v0.3.0 cut. Bundling them is
+  jasonsmithio/paddleboard#387, in the v0.3.1 milestone.
+- **Also fixed: "never on your filesystem".** The project folder is mounted, so the card now
+  says "with only your project mounted".
+- **Jay picked option A, which named `brew install libkrun`. That command was dropped.** libkrun
+  isn't in homebrew-core: the repo's setup script uses the `slp/krun` tap, while this Mac's copy
+  came from `libkrun/krun`. So the card says "installed from Homebrew" and no command, until #387
+  settles which tap is canonical.
+- The comment above the card says to restore "nothing to install" once #387 ships. The live page
+  was checked after the deploy (`1e55d80`).
+
 ### Launch: site flipped for v0.3.0, and a changelog started
 
 - **#48 squash-merged at about 8:25am PDT** (`1ebfcc2`) on Jay's "flip the site", inside the
