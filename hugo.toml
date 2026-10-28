@@ -25,7 +25,7 @@ disableKinds = ["taxonomy", "term"]
 [params]
   # SEO: front-load the terms people search ("open source AI IDE", "AI harness").
   seotitle = "Open-Source AI IDE & Coding-Agent Harness"
-  description = "PaddleBoard is an open-source AI IDE and harness for coding agents — define who your agent should be with PERSONA.md, bring your own model keys, and manage agents, skills, and MCP servers. Telemetry off by default."
+  description = "PaddleBoard is an open-source AI IDE built on Zed. Run coding agents on local models with no API key, sandbox what they run in a microVM, and send no telemetry."
   keywords = "open source AI IDE, open source AI harness, AI IDE, AI code editor, agentic IDE, coding agent harness, AI agent workbench, agentic coding, AI agent persona, PERSONA.md, MCP client, bring your own key LLM, Zed fork, local-first AI editor"
   tagline = "The open-source AI IDE you actually own."
   subtitle = "PaddleBoard is an open-source, AI-native IDE — a local-first harness for coding agents. Tell your agent who to be with a PERSONA.md, bring your own model keys, and manage agents, skills, and MCP servers from one place. No telemetry, no hosted plan."
