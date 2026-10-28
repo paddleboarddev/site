@@ -50,6 +50,16 @@ already know about and shipped anyway.
 
 Current as of 0.3.0. We'd rather you read this than discover it.
 
+**Coming in 0.3.1**
+
+We found a few things after 0.3.0 was cut. The fixes are already in, and they ship
+in 0.3.1.
+
+- **macOS:** on some macOS versions the window buttons sit on top of the back and
+  forward arrows, and the line under the tab bar stops short beneath them.
+- **Security:** updated TLS and certificate handling (rustls 0.23.46, and a
+  compromised root certificate removed from the fallback store).
+
 **Platforms**
 
 - macOS builds are **Apple Silicon only**. No Intel build.
