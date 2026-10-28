@@ -87,12 +87,14 @@ disableKinds = ["taxonomy", "term"]
 
   # Copy deliberately narrow: the built-in tier covers one-shot commands only.
   # Services, sandboxed MCP and REPL kernels still need Podman — do not widen
-  # this back to "zero setup".
+  # this back to "zero setup". v0.3.0 doesn't bundle libkrun, so the built-in tier
+  # needs it from Homebrew (a tap, not homebrew-core); restore "nothing to install"
+  # only once jasonsmithio/paddleboard#387 ships the dylibs in the app.
   [[params.sections]]
     token = "ty"
     label = "sandbox"
     title = "Let it run, safely"
-    body = "Agent-run code executes in a microVM, never on your filesystem. The built-in tier runs one-shot commands with nothing to install; Podman unlocks long-running services and sandboxed MCP. Every command still passes your approve/deny gate."
+    body = "Agent-run code executes in a microVM, with only your project mounted. The built-in tier runs one-shot commands once libkrun is installed from Homebrew; Podman unlocks long-running services and sandboxed MCP. Every command still passes your approve/deny gate."
     image = "img/sandbox.png"
     caption = "Sandbox Backend — built-in microVM active"
 
