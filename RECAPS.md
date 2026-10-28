@@ -4,6 +4,14 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 
 ## 2026-10-28
 
+### `main` protected by a ruleset
+
+- **"Protect main" (ruleset 26079203)** blocks force-pushes and deletion on the default branch.
+  The same ruleset went on both PaddleBoard repos, recapped there. No bypass actors: to
+  force-push for a real reason, switch the ruleset off, push, and switch it back on.
+- **No required PRs, reviews or checks.** This repo has no checks, and Jay is the only
+  collaborator. Outside contributors can only open PRs anyway.
+
 ### SEO pass: article structured data and a launch-matched description (#53, #54)
 
 - **Audit of the live site came back mostly clean.** Every page has its own title, description,
@@ -21,8 +29,9 @@ Running log of completed work on the PaddleBoard marketing site, newest first. E
 - **Left alone:** the site-wide `keywords` meta (Google ignores it, and it does no harm), the
   title and the tagline. Cards for links shared before #54 keep the old text, because each
   network caches the card.
-- **Open, Jay's:** Search Console. No verification meta was found (it may be verified through
-  DNS). Submitting the sitemap there gets the post indexed sooner.
+- **Search Console was already set up** (sitemaps submitted 30 June for the site and docs, so it's
+  verified through DNS, which is why no meta tag showed). But Google had last read the site
+  sitemap on 14 July and found 1 page. Jay resubmitted it and requested indexing for the post.
 - No CHANGELOG lines: nobody using the site would notice either change.
 
 ### Sandbox card corrected before the Show HN (#51)
