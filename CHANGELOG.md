@@ -4,6 +4,14 @@ Changes to paddleboard.dev that a visitor would notice, newest first. The site
 has no versions of its own, so entries are dated by the day they went live.
 Why each change was made lives in [RECAPS.md](RECAPS.md).
 
+## 2026-11-02
+
+### Changed
+- The beta page's known issues are now current as of 0.3.1.
+
+### Removed
+- The "Coming in 0.3.1" note on the beta page. Those fixes shipped in 0.3.1.
+
 ## 2026-10-28
 
 ### Added
