@@ -2,6 +2,14 @@
 
 Running log of completed work on the PaddleBoard marketing site, newest first. Each `## YYYY-MM-DD` groups a day; each `### ` is one coherent unit of work.
 
+## 2026-11-02
+
+### /beta marked current as of 0.3.1 (#57)
+- "Current as of 0.3.0" now reads 0.3.1, and the "Coming in 0.3.1" note is gone because both its fixes shipped. A dated entry went into `CHANGELOG.md`.
+- **Kept on purpose:** the keymap and status-bar known issues. Their fixes (jasonsmithio/paddleboard#377, #378) slipped to the v0.3.2 milestone, so removing them, as the 2026-10-05 note planned, would have claimed fixes that hadn't shipped.
+- The site version param needed no change: Jay had already bumped it to v0.3.1 in `def1827` on 31 October.
+- ⚠️ **The merge's push never triggered a deploy.** GitHub returned a GraphQL error mid-merge: the merge landed (`3814d34`) but the branch wasn't deleted and no `hugo.yml` run started. Deployed by hand with `gh workflow run hugo.yml --ref main`, then checked the live page. After a merge here, confirm a deploy run exists for the new commit.
+
 ## 2026-10-28
 
 ### `main` protected by a ruleset
